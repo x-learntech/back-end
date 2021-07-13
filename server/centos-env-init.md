@@ -24,7 +24,7 @@ yum install wget gcc automake autoconf libtool yum-utils gcc-c++
 3. 启动nginx
 `service nginx start`
 
-4. 访问<http://你的ip/>
+4. 访问 `http://你的ip/`
 如果成功安装会出来nginx默认的欢迎界面
 
 开机启动设置：
@@ -90,18 +90,19 @@ systemctl daemon-reload
 
 ps：相关安转目录
 
-```
-/usr/bin //相关命令
-/usr/share/mysql //配置文件目录
-/var/lib/mysql //数据库文件存放目录
-/etc/my.cnf.d //mysql的启动配置文件
-  client.cnf //mysql客户端配置文件
-  mysql-server.cnf //mysql
-  守护进程配置文件mysql-default-authentication-plugin.cnf //默认权限授权配置文件
+```bash
+/usr/bin # 相关命令
+/usr/share/mysql # 配置文件目录
+/var/lib/mysql # 数据库文件存放目录
+/etc/my.cnf.d # mysql的启动配置文件
+client.cnf # mysql客户端配置文件
+mysql-server.cnf # mysql
+守护进程配置文件mysql-default-authentication-plugin.cnf # 默认权限授权配置文件
 
-新增用户：user:nufun pwd:123456
+# 新增用户：
+user:nufun pwd:123456
 CREATE USER 'nufun'@'localhost' IDENTIFIED BY '123456';
-授权用户所有权限
+# 授权用户所有权限
 GRANT ALL ON *.* TO 'nufun'@'localhost';
 ```
 
@@ -123,7 +124,7 @@ GRANT ALL ON *.* TO 'nufun'@'localhost';
 
 `yum install libxml2 libxml2-devel openssl openssl-devel bzip2 bzip2-devel libcurl libcurl-devel libjpeg libjpeg-devel libpng libpng-devel freetype freetype-devel gmp gmp-devel libmcrypt libmcrypt-devel readline readline-devel libxslt libxslt-devel`
 
-5. 编译配置（安装后查看编译配置：php -i | grep configure ）
+5. 编译配置（安装后查看编译配置：`php -i | grep configure` ）
 (这一步可能我们会遇到很多configure error，我们一一解决，基本都是相关软件开发包没有安装导致右键黏贴，再enter。)
 
 ```bash
@@ -254,11 +255,11 @@ chmod +x /etc/init.d/php-fpm
 ```bash
 # 修改 /etc/nginx/conf.d/default.conf
 location ~ \.php$ {
-        root           /usr/share/nginx/html;
-        fastcgi_pass   127.0.0.1:9000;
-        fastcgi_index  index.php;
-        fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
-        include        fastcgi_params;
+  root           /usr/share/nginx/html;
+  fastcgi_pass   127.0.0.1:9000;
+  fastcgi_index  index.php;
+  fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+  include        fastcgi_params;
 }
 ```
 
@@ -294,14 +295,14 @@ wget -O git.tar.gz <https://www.kernel.org/pub/software/scm/git/git-2.25.1.tar.g
 3. 进入git源码目录：cd git-2.15.0
 4. 执行三步常规安装命令：检测环境配置并且设置安装路径，编译，安装；
 
-```
-# make prefix=/usr/local/git all
-# make prefix=/usr/local/git install
-# echo "export PATH=$PATH:/usr/local/git/bin" >> /etc/bashrc
-# source /etc/bashrc # 实时生效
+```bash
+make prefix=/usr/local/git all
+make prefix=/usr/local/git install
+echo "export PATH=$PATH:/usr/local/git/bin" >> /etc/bashrc
+source /etc/bashrc # 实时生效
 ```
 
-5. 验证安装成功：git --version
+5. 验证安装成功：`git --version`
 
 ### yum 安装
 
@@ -310,12 +311,15 @@ wget -O git.tar.gz <https://www.kernel.org/pub/software/scm/git/git-2.25.1.tar.g
 ## JAVA（1.8）
 
 1. 从 <http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html> 获取源码包，然后下载（具有时效性）
-wget  <http://download.oracle.com/otn-pub/java/jdk/8u152-b16/aa0333dd3019491ca4f6ddbe78cdb6d0/jdk-8u152-linux-x64.rpm?AuthParam=1510742091_046546a2c06f4dff78e0de6bc635d054>
+`wget  <http://download.oracle.com/otn-pub/java/jdk/8u152-b16/aa0333dd3019491ca4f6ddbe78cdb6d0/jdk-8u152-linux-x64.rpm?AuthParam=1510742091_046546a2c06f4dff78e0de6bc635d054>`
 
 2. 安装 rpm 源码包。
-rpm -ivh jdk-8u152-linux-x64.rpm?AuthParam=1510742091_046546a2c06f4dff78e0de6bc635d054
 
-3. 输入java -version 进行测试
+```bash
+rpm -ivh jdk-8u152-linux-x64.rpm?AuthParam=1510742091_046546a2c06f4dff78e0de6bc635d054
+```
+
+1. 输入java -version 进行测试
 
 后台运行：`nohup java -jar nufun-basketball.jar &`
 
@@ -329,7 +333,7 @@ make
 make install
 ```
 
-配置redis随系统启动：./utils/install_server.sh
+配置redis随系统启动：`./utils/install_server.sh`
 
 ```bash
 Please select the redis port for this instance: [6379] 
@@ -343,7 +347,7 @@ Selected default - /var/lib/redis/6379
 Please select the redis executable path [/usr/local/bin/redis-server] 
 ```
 
-注意：make命令执行完成编译后，会在src目录下生成6个可执行文件，分别是redis-server、redis-cli、redis-benchmark、redis-check-aof、redis-check-rdb、redis-sentinel。make install安装完成后，会在/usr/local/bin目录下生成下面几个可执行文件，它们的作用分别是：
+注意：make命令执行完成编译后，会在src目录下生成6个可执行文件，分别是`redis-server、redis-cli、redis-benchmark、redis-check-aof、redis-check-rdb、redis-sentinel。make install`安装完成后，会在`/usr/local/bin`目录下生成下面几个可执行文件，它们的作用分别是：
 
 ```xml
 redis-server：Redis服务器端启动程序 
@@ -354,11 +358,9 @@ redis-check-aof：数据修复工具
 
 Redis服务查看、开启、关闭:
 
-```xml
-a.通过ps -ef|grep redis命令查看Redis进程
-b.开启Redis服务操作通过/etc/init.d/redis_6379 start命令，也可通过（service redis_6379 start）
-c.关闭Redis服务操作通过/etc/init.d/redis_6379 stop命令，也可通过（service redis_6379 stop）
-```
+- 通过`ps -ef|grep redis`命令查看Redis进程
+- 开启Redis服务操作通过`/etc/init.d/redis_6379 start`命令，也可通过（`service redis_6379 start`）
+- 关闭Redis服务操作通过`/etc/init.d/redis_6379 stop`命令，也可通过（`service redis_6379 stop`）
 
 redis.conf 的配置信息
 
@@ -395,8 +397,6 @@ redis.conf 的配置信息
 ## MongoDB
 
 官网地址：[https://docs.mongodb.com/master/tutorial/install-mongodb-on-red-hat/](https://docs.mongodb.com/master/tutorial/install-mongodb-on-red-hat/)
-
-------
 
 ## PS：其他
 
