@@ -1,0 +1,30 @@
+{
+  "name": "learntech",
+  "version": "1.0.0",
+  "description": "学习笔记",
+  "main": "index.js",
+  "author": "xmiter",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "vuepress dev",
+    "build": "vuepress build"
+  },
+  "devDependencies": {
+    "@vuepress/plugin-back-to-top": "^1.8.0",
+    "@vuepress/plugin-medium-zoom": "^1.8.0",
+    "@vuepress/plugin-nprogress": "^1.8.0",
+    "@vuepress/plugin-pwa": "^1.8.0",
+    "async-validator": "^3.5.1",
+    "core-js": "^3.8.3",
+    "element-ui": "^2.15.0",
+    "node-sass": "^5.0.0",
+    "sass-loader": "^10.1.1",
+    "vuepress": "^1.8.0",
+    "vuepress-plugin-auto-sidebar": "^1.5.0",
+    "vuepress-plugin-demo-container": "^0.2.0"
+  },
+  "dependencies": {
+    "dayjs": "^1.10.4"
+  }
+}
