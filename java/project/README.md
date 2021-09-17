@@ -1,10 +1,4 @@
-# Java相关
-
-## Java基础
-
-[Java基础](base/)
-
-## spring-boot
+# Java工程
 
 - [spring-boot](https://spring.io/projects/spring-boot)
 
