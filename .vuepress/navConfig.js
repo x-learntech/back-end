@@ -1,10 +1,9 @@
 module.exports = [
   { text: "主页", link: '/'},
-  { text: '后端语言', items: [
+  { text: '后端开发', items: [
     { text: 'Node', link: '/node/' },
     { text: 'Java', link: '/java/' }
   ]},
-  { text: 'SpringBoot', link: '/springboot/' },
   { text: 'Server', link: '/server/' },
-  { text: "大前端", link: "http://front.learntech.cn/" },
+  { text: "大前端", link: "https://front.learntech.cn/" },
 ]

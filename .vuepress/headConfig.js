@@ -27,7 +27,7 @@ module.exports = [
       name: "description",
       itemprop: "description",
       content:
-        "Learntech Back-End，学习记录，笔记备份，文章备份，后端开发，APP开发",
+        "Learntech Back-End，学习记录，笔记备份，文章备份，后端开发，APP开发，node，Java，springboot",
     },
   ],
   ["meta", { itemprop: "name", content: "Learntech" }]
