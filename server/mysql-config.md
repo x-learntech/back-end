@@ -55,7 +55,7 @@ Enter password: 输入上面复制的密码
 
 ## 基本用法
 
-```mysql
+```sql
 # 查看版本
 $ mysql --version
 # 登录数据库
@@ -146,7 +146,7 @@ $ mysql> select user, plugin from mysql.user where user="testuser";
 
 远程访问：
 
-```mysql
+```sql
 mysql**>** use mysql;
 mysql**>** update user set host = '%' where user = 'root';
 mysql**>** select host, user from user;
@@ -157,7 +157,7 @@ mysql**>** flush privileges;
 
 > 有时候，只是为了自己测试，不想密码设置得那么复杂，譬如只想设置 root 的密码为 123456。
 
-```mysql
+```sql
 SET PASSWORD FOR 'root'@'localhost' = PASSWORD('123456');
 ERROR 1819 (HY000): Your password does not satisfy the current policy requirements
 ```
@@ -166,7 +166,7 @@ ERROR 1819 (HY000): Your password does not satisfy the current policy requiremen
 
 1）该问题其实与 mysql 的 validate_password_policy 的值有关。查看一下 msyql 密码相关的几个全局参数：
 
-```mysql
+```sql
 mysql> SHOW VARIABLES LIKE 'validate_password%';
 +--------------------------------------+--------+
 | Variable_name                        | Value  |
@@ -199,7 +199,7 @@ mysql> SHOW VARIABLES LIKE 'validate_password%';
 
 3）修改 mysql 参数配置
 
-```mysql
+```sql
 mysql> set global validate_password.policy=0;
 mysql> set global validate_password.mixed_case_count=0;
 mysql> set global validate_password.number_count=0;
@@ -207,7 +207,7 @@ mysql> set global validate_password.number_count=0;
 
 4）修改简单密码：
 
-```mysql
+```sql
 mysql> **SET** **PASSWORD** **FOR** 'root'@'localhost' = **PASSWORD**('123');
 Query OK, 0 **rows** affected, 1 warning (0.00 sec)
 ```
