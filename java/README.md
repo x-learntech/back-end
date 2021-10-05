@@ -23,6 +23,12 @@ JAVA 跨平台原理：
 - Javac 命令：检查 java 程序是否有单词拼写和语法错误
 - Java 命令：调用 jvm（java 虚拟机）来运行程序，程序不允许有逻辑错误。
 
+各种不同的平台的虚拟机都使用统一的程序存储格式——字节码（ByteCode）是构成平台无关性的另一个基石。Java虚拟机只与由字节码组成的Class文件进行交互。
+
+我们说Java语言可以Write Once ,Run Anywhere。这里的Write其实指的就是生成Class文件的过程。
+
+因为Java Class文件可以在任何平台创建，也可以被任何平台的Java虚拟机装载并执行，所以才有了Java的平台无关性。
+
 ## [Java 基础](base/)
 
 虽然是始于前端放眼全栈，但因为编程语言很多都是相通的，所以一些太过基础的就不再重复了。
@@ -153,9 +159,12 @@ short 类型在有的需求中会用到，比如：对于登录账号的状态�
 | [Redis](https://redis.io/)                                                                  | key-value 数据库      |
 | [Elasticsearch](https://www.elastic.co/cn/)                                                 | 分布式搜索引擎        |
 | [Dubbo](http://dubbo.apache.org/)                                                           | 分布式 RPC 服务框架   |
-| [RocketMQ](http://dubbo.apache.org/)                                                        | 消息中间件            |
-| [Seata](https://github.com/seata/seata)                                                     | 分布式事务中间件      |
+| [RocketMQ](https://rocketmq.apache.org)                                                     | 消息中间件            |
 | [Zookeeper](http://zookeeper.apache.org/)                                                   | 分布式系统协调        |
 | [XXL-Job](http://www.xuxueli.com/xxl-job/)                                                  | 分布式任务调度平台    |
 | [springfox-swagger2](https://github.com/springfox/springfox/tree/master/springfox-swagger2) | API 文档              |
 | [swagger-bootstrap-ui](https://gitee.com/xiaoym/swagger-bootstrap-ui)                       | Swagger 增强 UI 实现  |
+
+## 扩展阅读
+
+[To Be Top Javaer - Java工程师成神之路](https://github.com/hollischuang/toBeTopJavaer)
