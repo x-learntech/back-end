@@ -24,7 +24,7 @@
 
 **作用**：该值表示构建系统本地仓库的路径。
 
-其默认值：~/.m2/repository。
+Mac平台其默认值：`~/.m2/repository`。
 
 ```xml
 <localRepository>${user.home}/.m2/repository</localRepository>
