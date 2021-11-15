@@ -1,21 +1,25 @@
 # Nginx config 配置
 
-Nginx 出现的初衷是为了解决著名的 C10K 问题而出现的。和传统的 Web Server 不一样，Nginx 使用了异步事件处理机制架构。这种架构可以轻松高效地处理大量的请求，并且非常的节省内存。高性能是Nginx最大的优点。安装用稳定版，以下出现的配置只在 Mac 或者 centos 环境下验证过。
+Nginx 出现的初衷是为了解决著名的 C10K 问题而出现的。和传统的 Web Server 不一样，Nginx 使用了异步事件处理机制架构。这种架构可以轻松高效地处理大量的请求，并且非常的节省内存。高性能是 Nginx 最大的优点。安装用稳定版，以下出现的配置只在 Mac 或者 centos 环境下验证过。
 
 官网是：[nginx](http://nginx.org/)
 
-为什么选择Nginx：
+为什么选择 Nginx：
 
 1. 占用内存小。这得益于 Nginx 使用 C 语言编写，能够高效使用 CPU、内存等系统资源。并且作者自己造了很多的轮子 , 比如 Nginx 自己实现了内存管理系统，动态数组机制等。Nginx 作者对内存的使用控制简直到了丧心病狂的地步，所以非常的节省系统资源，特别是内存；
 2. 高并发。在 Linux 系统上，Nginx 使用了 epoll 机制，能够高效处理大量的连接数。理论上，Nginx 可以同时处理的最大连接数取决于你的机器的物理内存，上不封顶；
 3. 高可靠性。我认为 Nginx 的高可靠性主要体现在两方面:
-     - (一)：Nginx 使用了 Master-Worker 机制，真正处理请求的是Worker进程。Master进程可以监控Worker进程的运行状况，当某个Worker进程因意外原因退出的时候，Master会重新启动Worker进程；
-     - (二)：Nginx 的内部框架非常优秀。它的各个模块都非常简单，所以也非常的稳定。
+   - (一)：Nginx 使用了 Master-Worker 机制，真正处理请求的是 Worker 进程。Master 进程可以监控 Worker 进程的运行状况，当某个 Worker 进程因意外原因退出的时候，Master 会重新启动 Worker 进程；
+   - (二)：Nginx 的内部框架非常优秀。它的各个模块都非常简单，所以也非常的稳定。
 4. 热部署。可能大家觉得这个原因并不重要，其实在实际的线上环境是非常重要的。代码上线之后，我们只需要执行 `nginx -s reload` 命令就可以完成 Nginx 的重启，其他的交给 Nginx 就可以了，你可以安心去喝咖啡了。
 
-ps：C10K 就是 Client 10000 问题，即「在同时连接到服务器的客户端数量超过 10000 个的环境中，即便硬件性能足够， 依然无法正常提供服务」，简而言之，就是单机1万个并发连接问题。
+ps：C10K 就是 Client 10000 问题，即「在同时连接到服务器的客户端数量超过 10000 个的环境中，即便硬件性能足够， 依然无法正常提供服务」，简而言之，就是单机 1 万个并发连接问题。
 
 ## nginx.conf 配置文件
+
+nginx 采用了简单的文本格式的配置文件，下图总结了 nginx 指令一些特性。
+
+![1506-aZ48b1](https://cdn-static.learntech.cn/notes/20211115/1506-aZ48b1.png!min)
 
 Nginx 配置文件主要分成四部分：main（全局设置）、server（主机设置）、upstream（上游服务器设置，主要为反向代理、负载均衡相关配置）和 location（URL 匹配特定位置后的设置），每部分包含若干个指令。
 
@@ -104,7 +108,7 @@ http 服务上支持若干虚拟主机。每个虚拟主机一个对应的 serve
 
 ## location
 
-http 服务中，某些特定的 URL 对应的一系列配置项。
+http 服务中，某些特定的 URL 对应的一系列配置项。location是nginx的一大利器，该指令可以让根据请求的URI分别进行不同的处理。示例如下：
 
 - `root /var/www/html`
   定义服务器的默认网站根目录位置。如果 locationURL 匹配的是子目录或文件，root 没什么作用，一般放在 server 指令里面或/下。
@@ -117,6 +121,18 @@ http 服务中，某些特定的 URL 对应的一系列配置项。
 - `proxy_set_header X-Real-IP $remote_addr;`
 - `proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;`
   这四个暂且这样设，如果深究的话，每一个都涉及到很复杂的内容。
+
+匹配情况分类:
+
+1. 普通匹配(没有任何修饰符)
+2. 精确匹配(以"="开头)
+3. 最长前缀匹配(以"^~"开头)
+4. 正则匹配
+    - 区分大小写的正则(以~开头)
+    - 忽略大小写的正则(以~*开头)
+5. 内部location(以@开头)
+
+匹配顺序： ![1607-Y8QAMt](https://cdn-static.learntech.cn/notes/20211115/1607-Y8QAMt.png!min)
 
 ## 其它
 
@@ -204,7 +220,7 @@ http {
     #keepalive_timeout  0;
     keepalive_timeout  65;
     gzip  on;
-   add_header Cache-Control 'public, max-age=0';
+    add_header Cache-Control 'public, max-age=0';
     include servers/*;
 }
 ```
@@ -386,18 +402,18 @@ server {
     #index index.php index.html;
 
     location ~ ^/api/.* {
-      rewrite ^/api/(.*)$ /$1 break;
-      proxy_pass http://party_client_api;
-     proxy_set_header Host $host;
-     proxy_set_header X-Real-IP $remote_addr;
-     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-     proxy_set_header V-Insecurity Yes;
-     proxy_read_timeout 30;
-     proxy_connect_timeout 10;
+        rewrite ^/api/(.*)$ /$1 break;
+        proxy_pass http://party_client_api;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header V-Insecurity Yes;
+        proxy_read_timeout 30;
+        proxy_connect_timeout 10;
     }
 
     location / {
-    proxy_set_header Host $host;
+        proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header V-Insecurity Yes;
