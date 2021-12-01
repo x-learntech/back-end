@@ -52,10 +52,9 @@
     <Content class="theme-default-content custom" />
 
     <div
-      v-if="data.footer"
       class="footer"
     >
-      {{ data.footer }}
+      MIT Licensed . Copyright © 2020-{{currentYear}} <a href="https://front.learntech.cn/">learntech.cn</a> <br> <a href="http://beian.miit.gov.cn/" title="闽ICP备15011150号-1" target="_blank">闽ICP备15011150号-1</a>
     </div>
   </main>
 </template>
@@ -67,6 +66,12 @@ export default {
   name: 'Home',
 
   components: { NavLink },
+
+  data () {
+    return {
+      currentYear: new Date().getFullYear()
+    }
+  },
 
   computed: {
     data () {
@@ -143,6 +148,7 @@ export default {
     border-top 1px solid $borderColor
     text-align center
     color lighten($textColor, 25%)
+    line-height 2
 
 @media (max-width: $MQMobile)
   .home
