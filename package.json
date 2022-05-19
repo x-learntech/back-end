@@ -18,7 +18,7 @@
     "async-validator": "^3.5.1",
     "core-js": "^3.8.3",
     "element-ui": "^2.15.0",
-    "node-sass": "^5.0.0",
+    "node-sass": "npm:dart-sass",
     "sass-loader": "^10.1.1",
     "vuepress": "^1.8.0",
     "vuepress-plugin-auto-sidebar": "^1.5.0",

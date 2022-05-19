@@ -23,7 +23,7 @@
 
 用 Node.js 客户端技术(electron)实现，可以最大限度复用现有工程。
 
-PS：**由于很多知识点其实是跟 JavaScript 重复的或者几乎一样的，就不再重复出现，可以参考：[大前端](https://front.learntech.cn/)**
+PS：<span style="color: red;">**由于很多知识点其实是跟 JavaScript 重复的或者几乎一样的，就不再重复出现，可以参考：[大前端](https://front.learntech.cn/node/)** </span>
 
 ## BFF层（Backend for Frontend）
 
