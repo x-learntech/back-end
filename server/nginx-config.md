@@ -378,9 +378,11 @@ server {
 
 ### nodejs、 java 等环境配置
 
+此方法也可以做本地反向代理，处理接口跨域问题。
+
 ```nginx
 upstream party_client {
-    #weigth参数表示权值，权值越高被分配到的几率越大
+    #weight 参数表示权值，权值越高被分配到的几率越大
     #1.down 表示单前的server暂时不参与负载
     #2.weight 默认为1.weight越大，负载的权重就越大。
     #3.backup： 其它所有的非backup机器down或者忙的时候，请求backup机器。所以这台机器压力会最轻。
@@ -401,6 +403,7 @@ server {
     #root /Users/ruxin/party-project/party-construction-server/public;
     #index index.php index.html;
 
+    # api路径中转，接口有带/api/，实际接口不带/api/
     location ~ ^/api/.* {
         rewrite ^/api/(.*)$ /$1 break;
         proxy_pass http://party_client_api;
@@ -458,4 +461,22 @@ server {
         try_files $uri $uri/ /index.html;
     }
 }
+```
+
+### 二级目录前端配置
+
+history 模式
+
+```nginx
+# 前端h5配置start
+location /h5/ {
+  if ($request_filename ~* .*\.(?:htm|html)$) {
+    add_header Cache-Control "private, no-store, no-cache, must-revalidate, proxy-revalidate";
+    access_log on;
+  }
+  alias /www/wwwroot/h5/;
+  index index.html;
+  try_files $uri $uri/ /index.html =404;
+}
+# 前端h5配置end
 ```
