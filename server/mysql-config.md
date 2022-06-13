@@ -1,4 +1,4 @@
-# Mysql config 配置
+# Mysql 配置
 
 官网地址：[https://www.mysql.com/](https://www.mysql.com/)
 

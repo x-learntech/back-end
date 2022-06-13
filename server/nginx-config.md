@@ -1,4 +1,4 @@
-# Nginx Config 配置
+# Nginx 配置
 
 Nginx 出现的初衷是为了解决著名的 C10K 问题而出现的。和传统的 Web Server 不一样，Nginx 使用了异步事件处理机制架构。这种架构可以轻松高效地处理大量的请求，并且非常的节省内存。高性能是 Nginx 最大的优点。安装用稳定版，以下出现的配置只在 Mac 或者 centos 环境下验证过。
 
@@ -152,7 +152,7 @@ http 服务中，某些特定的 URL 对应的一系列配置项。location是ng
 
 Nginx 的访问控制模块默认就会安装，而且写法也非常简单，可以分别有多个 allow,deny，允许或禁止某个 ip 或 ip 段访问，依次满足任何一个规则就停止往下匹配。如：
 
-```bash
+```nginx
 location /nginx-status {
  stub_status on;
  access_log off;
@@ -165,7 +165,7 @@ location /nginx-status {
 
 ### 为访问的路径设置登录密码
 
-```bash
+```nginx
 # htpasswd -c htpasswd admin
 New passwd:
 Re-type new password:
@@ -185,7 +185,7 @@ Nginx 默认是不允许列出整个目录的。如需此功能，打开 nginx.c
 - `autoindex_localtime on;`
   默认为 off，显示的文件时间为 GMT 时间。改为 on 后，显示的文件时间为文件的服务器时间
 
-```bash
+```nginx
 # 列出图片
 location /images {
   root /var/www/nginx-default/images;
@@ -199,7 +199,7 @@ location /images {
 
 ### 默认配置文件 default.config
 
-```bash
+```nginx
 #user  nobody;
 worker_processes  1;
 
@@ -233,7 +233,7 @@ http {
 
 ### 经典的 80 端口设置
 
-```bash
+```nginx
 # 静态文件 demo
 server {
     listen       80;
@@ -308,7 +308,7 @@ server {
 
 ### 经典的 443 端口设置（https）
 
-```bash
+```nginx
 # 后端PHP CI框架 demo
 server {
     listen       443 ssl;
@@ -387,7 +387,7 @@ server {
 
 此方法也可以做本地反向代理，处理接口跨域问题。
 
-```bash
+```nginx
 upstream party_client {
     #weight 参数表示权值，权值越高被分配到的几率越大
     #1.down 表示单前的server暂时不参与负载
@@ -447,7 +447,7 @@ server {
 
 ### 强制 https，history 模式
 
-```bash
+```nginx
 # http to https
 server {
     listen 80;
@@ -474,7 +474,7 @@ server {
 
 > 指二级目录是一个独立的站点，通常对应react或者Vue框架中的 PUBLIC_PATH 属性。
 
-```bash
+```nginx
 # 前端h5配置start
 location /h5/ {
   # 不缓存 html 或 htm 后缀页面
