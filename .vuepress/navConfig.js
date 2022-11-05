@@ -5,5 +5,6 @@ module.exports = [
     { text: 'Java', link: '/java/' }
   ]},
   { text: 'Server', link: '/server/' },
+  { text: 'SQL', link: '/sql/' },
   { text: "大前端", link: "https://front.learntech.cn/" },
 ]
