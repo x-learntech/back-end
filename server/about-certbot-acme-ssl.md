@@ -103,3 +103,5 @@ acme.sh --installcert -d learntech.cn --key-file /etc/nginx/cert/learntech.cn/pr
 PS：目前在使用acme
 
 PS：本地证书生成：<https://github.com/FiloSottile/mkcert>
+
+PS：不少人用 [Caddy](https://caddyserver.com/) 了

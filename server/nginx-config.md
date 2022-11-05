@@ -480,3 +480,7 @@ location /h5/ {
 }
 # 前端h5配置end
 ```
+
+其他：[nginx在线配置工具](https://nginxconfig.io/)
+
+PS：新的竞争对手> [Caddy](https://caddyserver.com/)
