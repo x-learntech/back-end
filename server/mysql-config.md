@@ -61,9 +61,9 @@ $ mysql --version
 # 登录数据库
 $ mysql -uroot -p # 用户名root，接下去输入密码
 # 列出 MySQL 数据库管理系统的数据库列表。
-$ SHOW DATABASES:
+$ SHOW DATABASES;
 # 显示指定数据库的所有表，使用该命令前需要使用 use 命令来选择要操作的数据库。
-$ SHOW TABLES:
+$ SHOW TABLES;
 # 查看当前用户
 $ select user();
 # 查看用户testuser的连接方式

@@ -6,8 +6,12 @@ PS：暂定默认表名称为 t_table，且已连接好数据库。
 
 ## 查询
 
-- 查询表所有数据，`*` 泛指所有
+- 查询表所有数据
   
 ```sql
+-- `*` 泛指所有
 select * from t_table;
+
+-- 查询表中所有的name值
+select name from t_table;
 ```

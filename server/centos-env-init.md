@@ -419,3 +419,5 @@ tar -zcv -f nufun.tar.gz nufun/
 # 解压：tar -xvf 文件
 tar -xvf nufun.tar.gz
 ```
+
+ps：后续很多都走docker了
