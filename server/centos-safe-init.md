@@ -1,13 +1,13 @@
-# Centos 8 常规安全初始化
+# Centos 常规安全初始化
 
 ## 创建普通用户
 
 ```bash
-# 创建一个名为nufun的用户
+# 创建一个名为user的用户
 $ adduser user
-# 给nufun创建登录密码
+# 给user创建登录密码
 $ passwd user
-# 设置完密码后就可以使用user用户名和密码来登录主机了。但是此时user并没有ROOT的权限，我们通过编辑sudoers文件给nufun赋权，在终端执行：
+# 设置完密码后就可以使用user用户名和密码来登录主机了。但是此时user并没有ROOT的权限，我们通过编辑sudoers文件给user赋权，在终端执行：
 $ visudo
 # 在sudoers的最后一行加入：
 $ user    ALL=(ALL)       ALL
