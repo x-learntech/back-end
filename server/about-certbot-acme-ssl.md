@@ -12,7 +12,7 @@ test ALL=(ALL) NOPASSWD: /usr/bin/tail,/usr/bin/cat,/bin/vim,/usr/bin/du
 ```
 
 ```bash
-curl  https://get.acme.sh | sh
+curl https://get.acme.sh | sh -s email=my@example.com
 # 会自动生成一条类似如下的定时器
 13 0 * * * "/home/user/.acme.sh"/acme.sh --cron --home "/home/user/.acme.sh" > /dev/null
 ```
