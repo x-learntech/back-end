@@ -17,10 +17,10 @@ curl https://get.acme.sh | sh -s email=my@example.com
 13 0 * * * "/home/user/.acme.sh"/acme.sh --cron --home "/home/user/.acme.sh" > /dev/null
 ```
 
-PS：如果上述过程中下载资源失败，则可能需要下载git到服务器安装。
+PS：如果上述过程中下载资源失败，则可能需要下载git到服务器后本地安装。
 
 ```bash
-# 1、以dnspod cn为例，设置ID和key
+# 1、以 dnspod cn为例，设置ID和key
 $ export DP_Id=""
 $ export DP_Key=""
 # 2、申请证书

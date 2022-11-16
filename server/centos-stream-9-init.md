@@ -3,9 +3,17 @@
 ```bash
 # 查看centos的版本
 cat /etc/redhat-release 
+
+# 更新系统软件
+yum update -y
+
+#安装编译工具
+yum install wget gcc automake autoconf libtool yum-utils gcc-c++ -y
 ```
 
-## 配置国内源 阿里云源
+## 配置国内源
+
+PS：示例为阿里云源
 
 ```bash
 # CentOS-Base.repo
@@ -71,7 +79,7 @@ gpgcheck=1
 gpgkey=https://mirrors.aliyun.com/centos-stream/RPM-GPG-KEY-CentOS-Official
 ```
 
-ps：我在腾讯云里选择此公共镜像，发现默认已经被替换为腾讯云的镜像了。
+ps：我在腾讯云里选择此公共镜像，发现默认已经被替换为腾讯云的镜像了，就没必要额外修改了。
 
 ## 软件管理工具 dnf
 
@@ -120,6 +128,16 @@ dnf upgrade
 dnf check-update
 ```
 
+## git
+
+```bash
+sudo dnf -y install git
+
+# 查看版本
+git --version 
+# git version 2.31.1
+```
+
 ## mysql
 
 ```bash
@@ -128,6 +146,10 @@ sudo dnf install mysql mysql-server
 
 # 验证是否安装成功
 mysql --version
+
+# 或者这样查看
+ps -ef | grep mysql
+mysqladmin --version # mysqladmin  Ver 8.0.30 for Linux on x86_64 (Source distribution)
 
 # 开启服务
 sudo systemctl start mysqld
@@ -141,24 +163,69 @@ sudo systemctl enable mysqld
 # 安全设置，比如，设置密码root
 mysql_secure_installation
 
-# root 账户登录
+# 账户登录，此处为root
 mysql -u root -p
 
 # 新增用户： user:nufun pwd:123456
 CREATE USER 'nufun'@'localhost' IDENTIFIED BY '123456';
 # 授权用户所有权限
 GRANT ALL ON *.* TO 'nufun'@'localhost';
+# 刷新权限表
+flush privileges;
+```
+
+PS：如果是低配版本的云服务器，比如1核1G，那么建议关闭性能分析。不然，默认会占用约40%的内存，优化后至少可以降一半。
+
+```bash
+# /etc/my.cnf
+# This group is read both both by the client and the server
+# use it for options that affect everything
+#
+[client-server]
+
+[mysqld]
+#关闭性能分析
+performance_schema=off
 ```
 
 ## nginx
 
 ```bash
-sudo dnf install nginx
+sudo dnf install nginx -y
+
+# 开启服务
+sudo systemctl start nginx
+# 查看运行状态
+sudo systemctl status nginx
+# 开机启动
+sudo systemctl enable nginx
+```
+
+## nodejs
+
+```bash
+sudo dnf -y install nodejs
+
+# 查看版本
+node -v
+# v16.16.0
+```
+
+## java
+
+```bash
+sudo yum install java-11-openjdk -y
+
+# 查看版本
+java --version
+# openjdk 11.0.17 2022-10-18 LTS
+# OpenJDK Runtime Environment (Red_Hat-11.0.17.0.8-2.el9) (build 11.0.17+8-LTS)
+# OpenJDK 64-Bit Server VM (Red_Hat-11.0.17.0.8-2.el9) (build 11.0.17+8-LTS, mixed mode, sharing)
 ```
 
 ## docker
 
-PS：后续环境可能直接走docker了
+PS：后续环境可能直接走docker了，低配版服务器不建议
 
 手动更换为阿里云镜像
 

@@ -26,6 +26,43 @@ ssh 「用户名@地址」 -p 「端口号，默认：22」
     ssh-keygen -R 「地址」
     ```
 
+## 服务进程查看命令
+
+```bash
+systemctl start nginx.service              #启动nginx服务
+systemctl enable nginx.service             #设置开机自启动
+systemctl disable nginx.service            #停止开机自启动
+systemctl status nginx.service             #查看服务当前状态
+systemctl restart nginx.service　          #重新启动服务
+systemctl list-units --type=service        #查看所有已启动的服务
+```
+
+## 修改用户权限
+
+```bash
+chmod 777 /home/user
+# 注：仅把/home/user目录的权限设置为rwxrwxrwx
+chmod -R 777 /home/user 
+# 注：表示将整个/home/user目录与其中的文件和子目录的权限都设置为rwxrwxrwx`
+# 其中，参数`-R`表示启动递归处理
+```
+
+权限数字含义为：
+
+- 对用户可读可写：4（读取）+ 2（写入）= 6；
+- 对用户组可读可执行：4（读取）+ 1（执行）= 5；
+- 对其他用户仅可读：4（读取）；
+
+针对文件的三种权限：
+
+　　　- 读文件内容（r），写数据到文件（w），作为命令执行文件（x）
+
+针对目录的三种权限：
+
+　　　- 读包含在目录中的文件名称（r）；
+　　　- 写信息到目录中去（增加和删除索引点的连结，w）；
+　　　- 搜索目录（能用该目录名称作为路径名去访问它所包含的文件和子目录）；
+
 ## 远程复制文件（夹）
 
 ```shell
@@ -148,28 +185,58 @@ vi ~/.zshrc         # zsh
 # source 脚本   # 当前运行一遍
 ```
 
-## 查看端口占用，杀掉进程
+## 端口查看
 
-1. macOS、Linux
+PS：macOS、Linux 下
 
-    ```shell
-    lsof -i :「端口号」
+```shell
+# 列出端口信息格式 
+# lsof -i :「端口号」
 
-    kill 「PID」
-    ```
+# 列出3000端口进程信息
+lsof -i :3000
+```
 
-2. Windows（需要在cmd.exe进行）
+## 进程查杀
 
-    ```shell
-    netstat -aon | findstr 「端口号」  # 获得某端口号的任务PID
+PS：macOS、Linux 下
 
-    tasklist | findstr 「PID」          # 获得某PID的任务名
-    # 获得任务名之后可以再用`tasklist | findstr 「任务名」`确认是否有多个子任务
+- 按进程ID
 
-    taskkill /F /T /PID 「PID」           # 需要杀死主进程，否则仅杀死的子进程会被主进程再次创建
-    # 或`taskkill /F /T /IM 「任务名」`
-    # 或去任务管理器结束进程（打开进程->查看->选择列的PID）
-    ```
+```bash
+# kill 「PID」
+
+# 强制kill
+kill -9 「PID」 
+kill -KILL 「PID」
+
+# 命令中断导致 
+kill -2 「PID」
+
+# 杀死指定用户所有进程
+kill -9 $(ps -ef | grep user) //方法一 过滤出user用户进程 
+kill -u user //方法二
+```
+
+- 按进程名
+
+```bash
+# kill node
+pkill node
+pkill -9 node # 结束所有的 node 进程
+
+# killall 用于杀死一个进程，与 kill 不同的是它会杀死指定名字的所有进程。
+killall node
+killall -9 node # 结束所有的 node 进程
+```
+
+pkill 和 killall 应用方法差不多。
+
+最常用的信号是：
+
+1 (HUP)：重新加载进程。
+9 (KILL)：杀死一个进程。
+15 (TERM)：正常停止一个进程。
 
 ## 创建文件
 
@@ -209,44 +276,41 @@ vi ~/.zshrc         # zsh
     find 「路径」 -size +10M
     ```
 
----
+## 解压缩 tar
 
-### macOS命令
+基本格式：
 
-## （macOS）brew更新
+压缩---> tar [选项]... 归档文件名 源文件或目录
+
+解压---> tar [选项]... 归档文件名 [-C 目标目录]
+
+常用命令选项：
+
+- -c：创建 .tar 格式的包文件 --create
+- -x：解开 .tar 格式的包文件 --extract
+- -v：输出详细信息 --verbose
+- -f：表示使用归档文件 --file
+- -t：列表查看包内的文件 --list（list the contents of an archive）
+- -p：保持原文件的原来属性 --preserve-permissions
+- -P：保持原文件的绝对路径 --absolute-names
+
+```bash
+# 压缩：tar -zcv -f 生成的文件 要打包的文件
+tar -zcv -f nufun.tar.gz nufun/
+# 解压：tar -xvf 文件
+tar -xvf nufun.tar.gz
+```
+
+## macOS命令
+
+## brew更新
 
 ```shell
 brew update && brew upgrade && brew cask upgrade
 ```
 
-## （macOS）打开文件（夹）
+## 打开文件（夹）
 
 ```shell
 open 「路径/文件」
 ```
-
-## 修改用户权限
-
-```bash
-chmod 777 /home/user
-# 注：仅把/home/user目录的权限设置为rwxrwxrwx
-chmod -R 777 /home/user 
-# 注：表示将整个/home/user目录与其中的文件和子目录的权限都设置为rwxrwxrwx`
-# 其中，参数`-R`表示启动递归处理
-```
-
-权限数字含义为：
-
-- 对用户可读可写：4（读取）+ 2（写入）= 6；
-- 对用户组可读可执行：4（读取）+ 1（执行）= 5；
-- 对其他用户仅可读：4（读取）；
-
-针对文件的三种权限：
-
-　　　- 读文件内容（r），写数据到文件（w），作为命令执行文件（x）
-
-针对目录的三种权限：
-
-　　　- 读包含在目录中的文件名称（r）；
-　　　- 写信息到目录中去（增加和删除索引点的连结，w）；
-　　　- 搜索目录（能用该目录名称作为路径名去访问它所包含的文件和子目录）；
