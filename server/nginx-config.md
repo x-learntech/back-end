@@ -140,6 +140,67 @@ http 服务中，某些特定的 URL 对应的一系列配置项。location是ng
 
 匹配顺序： ![1607-Y8QAMt](https://cdn-static.learntech.cn/notes/20211115/1607-Y8QAMt.png!min)
 
+## 配置代码复用
+
+通用示例代码：base_learntech.rule
+
+```bash
+    listen 443 ssl http2;
+
+    ssl_certificate /etc/nginx/cert/learntech.cn/fullchain.pem;
+    ssl_certificate_key /etc/nginx/cert/learntech.cn/privkey.pem;
+    ssl_session_timeout 5m;
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_prefer_server_ciphers on;
+    ssl_ciphers EECDH+CHACHA20:EECDH+CHACHA20-draft:EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES:!MD5;
+    ssl_session_cache shared:SSL:50m;
+    add_header X-Frame-Options DENY;
+
+    gzip  on;
+    gzip_min_length 1k;
+    gzip_buffers 4 16k;
+    gzip_static on;
+    gzip_comp_level 9;
+    gzip_vary off;
+    gzip_types text/plain application/javascript application/json application/x-javascript text/css application/xml text/javascript application/x-httpd-php image/jpeg image/gif image/png;
+    
+    add_header Cache-Control 'public, max-age=600';
+ 
+    index index.html;
+
+    location / {
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header V-Insecurity Yes;
+        proxy_read_timeout 120;
+        proxy_connect_timeout 120;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+
+       if (!-e $request_filename){
+           rewrite ^(.*)$ /$1.html last;
+           break;
+        }
+    }
+
+    error_page 500 502 503 504 /50x.html;
+    location = /50x.html {
+        root /usr/share/nginx/html;
+    }
+```
+
+引入通用代码示例：
+
+```bash
+server {
+    server_name www.learntech.cn;
+    root /data/www/ruxin/learntech-note/notes/dist;
+
+    include /etc/nginx/conf.d/base_learntech.rule;
+}
+```
+
 ## 其它
 
 ### 访问控制 allow/deny
@@ -152,7 +213,7 @@ http 服务中，某些特定的 URL 对应的一系列配置项。location是ng
 
 Nginx 的访问控制模块默认就会安装，而且写法也非常简单，可以分别有多个 allow,deny，允许或禁止某个 ip 或 ip 段访问，依次满足任何一个规则就停止往下匹配。如：
 
-```nginx
+```bash
 location /nginx-status {
  stub_status on;
  access_log off;
@@ -165,7 +226,7 @@ location /nginx-status {
 
 ### 为访问的路径设置登录密码
 
-```nginx
+```bash
 # htpasswd -c htpasswd admin
 New passwd:
 Re-type new password:
@@ -185,7 +246,7 @@ Nginx 默认是不允许列出整个目录的。如需此功能，打开 nginx.c
 - `autoindex_localtime on;`
   默认为 off，显示的文件时间为 GMT 时间。改为 on 后，显示的文件时间为文件的服务器时间
 
-```nginx
+```bash
 # 列出图片
 location /images {
   root /var/www/nginx-default/images;
@@ -195,11 +256,11 @@ location /images {
 }
 ```
 
-## 一些常见的设置
+## 常用设置示例
 
-### 默认配置文件 default.config
+### default.config
 
-```nginx
+```bash
 #user  nobody;
 worker_processes  1;
 
@@ -226,14 +287,14 @@ http {
     #keepalive_timeout  0;
     keepalive_timeout  65;
     gzip  on;
-    add_header Cache-Control 'public, max-age=0';
+    add_header Cache-Control 'public, max-age=0'; # 0 表示不缓存
     include servers/*;
 }
 ```
 
 ### 经典的 80 端口设置
 
-```nginx
+```bash
 # 静态文件 demo
 server {
     listen       80;
@@ -285,7 +346,7 @@ server {
     index index.php index.html;
 
     location / {
-    try_files $uri $uri/ /index.php?$query_string;
+        try_files $uri $uri/ /index.php?$query_string;
     }
 
     #error_page 404 /404.html;
@@ -308,19 +369,20 @@ server {
 
 ### 经典的 443 端口设置（https）
 
-```nginx
+```bash
 # 后端PHP CI框架 demo
 server {
-    listen       443 ssl;
+    listen       443 ssl http2;
     server_name  api.domain.cn;
 
     ssl_certificate /etc/nginx/cert/api.domain.public.pem;
     ssl_certificate_key /etc/nginx/cert/api.domain.private.key;
     ssl_session_timeout 5m;
-    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+    ssl_protocols TLSv1.2 TLSv1.3;
     ssl_prefer_server_ciphers on;
     ssl_ciphers EECDH+CHACHA20:EECDH+CHACHA20-draft:EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES:!MD5;
     ssl_session_cache shared:SSL:50m;
+
     add_header X-Frame-Options DENY;
     add_header X-Content-Type-Options nosniff;
     add_header X-Xss-Protection 1;
@@ -361,13 +423,13 @@ server {
 }
 
 server {
-    listen 443 ssl;
+    listen 443 ssl http2;
     server_name api.amoylife.cn;
 
     ssl_certificate /etc/nginx/cert/api.amoylife.cn_bundle.crt;
     ssl_certificate_key /etc/nginx/cert/api.amoylife.cn.key;
     ssl_session_timeout 5m;
-    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+    ssl_protocols TLSv1.2 TLSv1.3;
     ssl_prefer_server_ciphers on;
     ssl_ciphers ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA;
     ssl_session_cache shared:SSL:50m;
@@ -387,7 +449,7 @@ server {
 
 此方法也可以做本地反向代理，处理接口跨域问题。
 
-```nginx
+```bash
 upstream party_client {
     #weight 参数表示权值，权值越高被分配到的几率越大
     #1.down 表示单前的server暂时不参与负载
@@ -447,7 +509,7 @@ server {
 
 ### 强制 https，history 模式
 
-```nginx
+```bash
 # http to https
 server {
     listen 80;
@@ -472,15 +534,14 @@ server {
 
 ### 二级目录独立站点
 
-> 指二级目录是一个独立的站点，通常对应react或者Vue框架中的 PUBLIC_PATH 属性。
+> 指二级目录是一个独立的站点，通常对应react或者Vue框架中的 PUBLIC_PATH 属性。这边主要是利用了 alias。
 
-```nginx
-# 前端h5配置start
+```bash
+# SPA 前端h5配置start
 location /h5/ {
   # 不缓存 html 或 htm 后缀页面
   if ($request_filename ~* .*\.(?:htm|html)$) {
     add_header Cache-Control "private, no-store, no-cache, must-revalidate, proxy-revalidate";
-    access_log on;
   }
 
   alias /www/path/h5/;
