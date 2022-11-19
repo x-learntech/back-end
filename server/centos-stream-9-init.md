@@ -113,7 +113,7 @@ dnf install zsh
 # 从指定的repo安装一个rpm包
 dnf --enablerepo=BaseOS install zsh 
 # 仅下载，不安装
-dnf download nginx
+dnf download zsh
 # 删除包
 dnf remove zsh
 # 删除缓存的无用软件包
@@ -142,7 +142,7 @@ git --version
 
 ```bash
 # 安装
-sudo dnf install mysql mysql-server
+sudo dnf install mysql mysql-server -y
 
 # 验证是否安装成功
 mysql --version
@@ -214,7 +214,7 @@ node -v
 ## java
 
 ```bash
-sudo yum install java-11-openjdk -y
+sudo dnf install java-11-openjdk -y
 
 # 查看版本
 java --version

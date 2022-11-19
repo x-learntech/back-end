@@ -7,7 +7,7 @@
 > /var (variable)：与系统运作过程有关。
 > /sbin (system binary)
 > /srv 可以视为『service』的缩写
-> / home：用户目录
+> /home：用户目录
 > /etc/：几乎系统的所有配置文件案均在此，尤其 passwd,shadow o
 > /boot:开机配置文件，也是预设摆放核心 vmlinuz 的地方
 > /usr/bin, /bin：一般执行档摆放的地方
