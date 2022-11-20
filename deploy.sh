@@ -2,7 +2,7 @@
 
 ROOT_DIR=$(dirname $0)
 USER=ruxin
-DEST_HOST=49.234.192.155
+DEST_HOST=123.60.47.61
 DEST_DIR=/data/ruxin/www/learntech-note/back/dist
 
 if ! npm run build; then
