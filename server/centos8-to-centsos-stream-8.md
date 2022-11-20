@@ -27,6 +27,11 @@ sudo sed -e 's|^mirrorlist=|#mirrorlist=|g' \
          /etc/yum.repos.d/CentOS-Stream-PowerTools.repo
 ```
 
+```bash
+# 更新缓存
+dnf makecache
+```
+
 from：[https://mirrors.ustc.edu.cn/help/centos.html](https://mirrors.ustc.edu.cn/help/centos.html)
 
 ## 软件安装
