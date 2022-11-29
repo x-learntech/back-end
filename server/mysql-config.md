@@ -2,60 +2,9 @@
 
 官网地址：[https://www.mysql.com/](https://www.mysql.com/)
 
-## 安转(centos 7)
-
-- 安装 mysql 源
-
-`yum localinstall https://repo.mysql.com//mysql80-community-release-el7-3.noarch.rpm`
-
-- 安装 mysql
-
-`yum install mysql-community-server`
-
-```xml
-# 解决下载缓慢问题？
-# 找到缓存路径，然后去国内镜像下载对应版本的软件，然后重新执行安装
-/var/cache/yum/x86_64/7/mysql80-community/packages
-# 网易镜像
-http://uni.mirrors.163.com/mysql/Downloads/
-```
-
-- 启动 mysql
-
-`service mysqld start`
-
-- 查看 mysql 启动状态
-
-`service mysqld status`
-
-- 获取 mysql 默认生成的密码
-
-```bash
-$ grep 'temporary password' /var/log/mysqld.log
-2017-02-10T14:59:42.328736Z 1 [Note] A temporary password is generated for root@localhost: s/giN9Vo>L9h
-```
-
-冒号后面的都是密码(没有空格) 复制就好
-
-- 换成自己的密码
-
-`$ mysql -uroot -p`
-
-Enter password: 输入上面复制的密码
-
-- 更换密码
-
-`mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'MyNewPass4!';`
-
-这个密码一定要足够复杂，不然会不让你改，提示密码不合法
-
-- 退出 mysql
-
-`mysql> quit;`
-
 ## 基本用法
 
-```sql
+```bash
 # 查看版本
 $ mysql --version
 # 登录数据库
@@ -66,8 +15,8 @@ $ SHOW DATABASES;
 $ SHOW TABLES;
 # 查看当前用户
 $ select user();
-# 查看用户testuser的连接方式
-$ mysql> select user, plugin from mysql.user where user="testuser";
+# 查看用户 test 的连接方式
+$ mysql> select user, plugin from mysql.user where user="test";
 ```
 
 ### 一. 创建用户
@@ -96,7 +45,7 @@ $ mysql> select user, plugin from mysql.user where user="testuser";
 
 - privileges：用户的操作权限，如 SELECT，INSERT，UPDATE 等，如果要授予所的权限则使用 ALL
 - databasename：数据库名
-- tablename：表名，如果要授予该用户对所有数据库和表的相应操作权限则可用*表示，如*.\*
+- tablename：表名，如果要授予该用户对所有数据库和表的相应操作权限则可用`*`表示，如 `*.*`
 
 **例子:**
 

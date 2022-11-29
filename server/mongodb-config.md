@@ -3,19 +3,19 @@
 - 官网地址：[https://www.mongodb.com/](https://www.mongodb.com/)
 - 中文：[https://www.mongodb.org.cn/](https://www.mongodb.org.cn/)
 
-## 安装流程(centos 7)
+## 安装流程
 
 官方安装说明文档：[https://docs.mongodb.com/master/tutorial/install-mongodb-on-red-hat/](https://docs.mongodb.com/master/tutorial/install-mongodb-on-red-hat/)
 
 ```bash
-# Create a /etc/yum.repos.d/mongodb-org-4.2.repo file so that you can install MongoDB directly using yum:
+# Create a /etc/yum.repos.d/mongodb-org-6.0.repo file so that you can install MongoDB directly using yum:
 
-[mongodb-org-4.2]
+[mongodb-org-6.0]
 name=MongoDB Repository
-baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.2/x86_64/
+baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/6.0/x86_64/
 gpgcheck=1
 enabled=1
-gpgkey=https://www.mongodb.org/static/pgp/server-4.2.asc
+gpgkey=https://www.mongodb.org/static/pgp/server-6.0.asc
 
 # yum 安装
 $ sudo yum install -y mongodb-org
@@ -40,7 +40,7 @@ sudo rm -r /var/log/mongodb
 sudo rm -r /var/lib/mongo
 ```
 
-MongoDB默认将数据文件存储在/var/lib/mongo目录，默认日志文件在/var/log/mongodb中。如果要修改,可以在 /etc/mongod.conf 配置中指定备用日志和数据文件目录。
+MongoDB默认将数据文件存储在 `/var/lib/mongo` 目录，默认日志文件在 `/var/log/mongodb` 中。如果要修改，可以在 `/etc/mongod.conf` 配置中指定备用日志和数据文件目录。
 
 PS：Mac版本安装
 
@@ -49,7 +49,7 @@ brew tap mongodb/brew
 brew install mongodb/brew/mongodb-community
 ```
 
-Mac版本的配置文件默认在 /usr/local/etc/mongod.conf
+Mac版本的配置文件默认在 `/usr/local/etc/mongod.conf`
 
 ## 安全设置
 
