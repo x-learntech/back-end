@@ -29,6 +29,23 @@ acme.sh --issue --dns dns_dp -d learntech.cn -d *.learntech.cn
 acme.sh --installcert -d learntech.cn --key-file /etc/nginx/cert/learntech.cn/privkey.pem --fullchain-file /etc/nginx/cert/learntech.cn/fullchain.pem --reloadcmd "sudo service nginx force-reload"
 ```
 
+```bash
+# 查看已申请证书列表及相关时间节点
+acme.sh --list
+
+# 查看某域名证书信息
+acme.sh --info -d example.com
+
+# 移除某个域名，不再申请此域名证书
+acme.sh --remove -d example.com
+
+# 自动升级 acme
+acme.sh --upgrade --auto-upgrade
+
+# 查看定时任务
+crontab  -l
+```
+
 官方中文文档其实说的很详细了，其他的直接看官方文档吧：[https://github.com/Neilpang/acme.sh/wiki/说明](https://github.com/Neilpang/acme.sh/wiki/%E8%AF%B4%E6%98%8E)
 
 PS：目前在使用acme
