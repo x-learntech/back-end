@@ -21,8 +21,8 @@ PS：如果上述过程中下载资源失败，则可能需要下载git到服务
 
 ```bash
 # 1、以 dnspod cn为例，设置ID和key
-$ export DP_Id=""
-$ export DP_Key=""
+$ export DP_Id="xxx"
+$ export DP_Key="xxx"
 # 2、申请证书
 acme.sh --issue --dns dns_dp -d learntech.cn -d *.learntech.cn
 # 3、拷贝证书

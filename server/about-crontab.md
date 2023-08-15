@@ -1,4 +1,4 @@
-# 关于Liunx的定时任务crontab
+# 关于 Linux 的定时任务crontab
 
 ## CRON命令
 
