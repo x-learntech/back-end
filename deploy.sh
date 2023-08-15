@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
 ROOT_DIR=$(dirname $0)
-USER=ruxin
-DEST_HOST=123.60.47.61
-DEST_DIR=/data/ruxin/www/learntech-note/back/dist
+USER=root
+DEST_HOST=back.learntech.cn
+DEST_DIR=/data/www/learntech-back/build
 
 if ! npm run build; then
   exit 1
 fi
 echo "success!!!"
 
-rsync -azv --delete "${ROOT_DIR}/dist/" -e "ssh -p 22022" "${USER}@${DEST_HOST}:${DEST_DIR}"
+rsync -azv --delete "${ROOT_DIR}/dist/" -e "ssh -p 10222" "${USER}@${DEST_HOST}:${DEST_DIR}"
