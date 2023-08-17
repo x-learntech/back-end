@@ -168,6 +168,16 @@ http 服务中，某些特定的 URL 对应的一系列配置项。location是ng
  
     index index.html;
 
+    # favicon.ico
+    location = /favicon.ico {
+        log_not_found off;
+    }
+
+    # robots.txt
+    location = /robots.txt {
+        log_not_found off;
+    }
+
     location / {
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
@@ -543,7 +553,7 @@ location /h5/ {
   if ($request_filename ~* .*\.(?:htm|html)$) {
     add_header Cache-Control "private, no-store, no-cache, must-revalidate, proxy-revalidate";
   }
-
+  # alias后面必须要用“/”结束，否则会找不到文件的。而且里面的文件链接建议走相对路径，不然可能出现404。
   alias /www/path/h5/;
   index index.html;
   try_files $uri $uri/ /index.html =404; # history 模式，404 重定向
