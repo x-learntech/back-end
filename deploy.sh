@@ -2,8 +2,8 @@
 
 ROOT_DIR=$(dirname $0)
 USER=root
-DEST_HOST=back.learntech.cn
-DEST_DIR=/data/www/learntech-back/build
+DEST_HOST=admin.imruxin.com
+DEST_DIR=/data/www/learntech-back/dist
 
 if ! npm run build; then
   exit 1

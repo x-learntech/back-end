@@ -6,5 +6,5 @@ module.exports = [
   ]},
   { text: 'Server', link: '/server/' },
   { text: 'SQL', link: '/sql/' },
-  { text: "大前端", link: "https://front.learntech.cn/" },
+  { text: "大前端", link: "https://front.learntech.cn:88/" },
 ]
