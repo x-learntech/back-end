@@ -1,30 +1,46 @@
----
-home: true
-heroImage: null
-heroText: 后端开发
-tagline: null
----
+# Website
 
-::: tip 简要说明
-个人开发学习梳理知识体系的地方，部分内容或图片来源于互联网（如若有侵犯到您的权益，请及时与我联系删除）。如果内容对您有帮助，那是再好不过了，若发现有错误则**非常欢迎指正**。
+This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
 
-**文章可以自由转载，但请保留出处及链接。一方面是对作者付出的肯定，另一方面则是让读者可以获取最新的修正内容**。
+- 样式和布局：<https://docusaurus.io/zh-CN/docs/styling-layout>
 
-- wechat：cniter
+## 快速开始
 
-**环境及工具：**
+```bash
+# 本地运行
+pnpm start
 
-- 平台系统：Mac OS（macmini rmbp）
-- 开发工具：vscode（主）、idea（java）
-- 服务器：centos
-- 版本管理：git
-- 辅助工具：xmind，Typora
-- 本站文档生成工具：vuepress
+# 项目编译
+pnpm build
+```
 
-## 内容包括
+## 代码演示
 
-后端开发，包括 Java、node、PHP，其中 java、node、php 都参与过业务开发，目前有空就进阶下 Java 或 node。当前主要时间还是以[大前端](https://front.learntech.cn/)为主。
+```jsx live
+function Clock(props) {
+  const [date, setDate] = useState(new Date());
+  useEffect(() => {
+    const timerID = setInterval(() => tick(), 1000);
 
-2013 年开始入坑前端然后放眼全栈，中途也一起线下合伙创业及线上远程创业过。所谓的知识体系是根据自己有限的工作经历及学习记录而来，并非绝对完整的知识体系。站在“巨人”的肩膀上，部分内容可能更适合有一定基础的人阅读。
+    return function cleanup() {
+      clearInterval(timerID);
+    };
+  });
 
-目前线下坐标厦门岛内，也欢迎交流，甚至有好的项目可以一起创业。
+  function tick() {
+    setDate(new Date());
+  }
+
+  return (
+    <div>
+      <h2>现在是 {date.toLocaleTimeString()}。</h2>
+    </div>
+  );
+}
+```
+
+## 代码扩展
+
+```bash npm2yarn
+npm install @docusaurus/remark-plugin-npm2yarn
+```
