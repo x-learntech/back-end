@@ -1,0 +1,10 @@
+{
+  "position": 3,
+  "label": "服务器",
+  "collapsible": true,
+  "collapsed": true,
+  "className": "server",
+  "customProps": {
+    "description": "This description can be used in the swizzled DocCard"
+  }
+}
