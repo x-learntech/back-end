@@ -60,7 +60,6 @@ function Clock(props) {
 npm install --save @docusaurus/theme-live-codeblock
 ```
 
-
 ```js title="docusaurus.config.js"
 export default {
   plugins: ['@docusaurus/theme-live-codeblock'],
@@ -84,7 +83,7 @@ import HomepageFeatures from '@site/src/components/HomepageFeatures';
 <HomepageFeatures />
 ```
 
-## 多Tab模式 
+## 多Tab模式
 
 ```mdx-code-block
 <Tabs>
@@ -139,13 +138,27 @@ I can write **Markdown** alongside my _JSX_!
 </BrowserWindow>
 ```
 
+````diff
+- ```jsx {3}
++ ```jsx {4}
+  function HighlightSomeText(highlight) {
+    if (highlight) {
++     console.log('Highlighted text found');
+      return 'This text is highlighted!';
+    }
+
+    return 'Nothing highlighted';
+  }
+  ```
+````
+
 ## mdx引用
 
 ```mdx-code-block
 import PartialExample from './mdx/_markdown-partial-example.mdx';
 
 <BrowserWindow>
-  <PartialExample name="Sebastien" />
+  <PartialExample name="大前端" />
 </BrowserWindow>
 ```
 

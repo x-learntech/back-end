@@ -1,6 +1,6 @@
 {
   "position": 3,
-  "label": "服务器",
+  "label": "运维及服务器",
   "collapsible": true,
   "collapsed": true,
   "className": "server",

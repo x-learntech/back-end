@@ -8,7 +8,7 @@ Koa 有两个核心知识点：一个是中间件 ctx，一个就是洋葱模型
 
 ## 1. 认识洋葱模型
 
-```js
+```js showLineNumbers
 const Koa = require("koa");
 
 const app = new Koa();
