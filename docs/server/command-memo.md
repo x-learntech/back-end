@@ -1,3 +1,7 @@
+---
+sidebar_position: 5
+---
+
 # 命令行备忘
 
 > 默认为 Linux 环境

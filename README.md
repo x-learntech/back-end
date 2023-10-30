@@ -44,3 +44,29 @@ function Clock(props) {
 ```bash npm2yarn
 npm install @docusaurus/remark-plugin-npm2yarn
 ```
+
+## 文档配置
+
+[Configuration](https://docusaurus.io/zh-CN/docs/api/plugins/@docusaurus/plugin-content-docs)
+
+```xml
+---
+id: doc-markdown
+title: 文档 Markdown 特性
+hide_title: false
+hide_table_of_contents: false
+sidebar_label: Markdown
+sidebar_position: 3
+pagination_label: Markdown 特性
+custom_edit_url: https://github.com/facebook/docusaurus/edit/main/docs/api-doc-markdown.md
+description: 我解决不了这个问题时在哪里找到你
+keywords:
+  - docs
+  - docusaurus
+image: https://i.imgur.com/mErPwqL.png
+slug: /myDoc
+last_update:
+  date: 1/1/2000
+  author: 自定义作者名
+---
+```

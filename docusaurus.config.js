@@ -4,7 +4,8 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "服务端端开发",
-  tagline: "Learntech Back-End，学习记录，笔记备份，文章备份，后端开发，APP开发",
+  tagline:
+    "Learntech Back-End，学习记录，笔记备份，文章备份，后端开发，APP开发",
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
@@ -26,7 +27,7 @@ const config = {
   },
   customFields: {
     // 把你的自定义环境放在这里
-    email: 'admin@imruxin.com',
+    email: "admin@imruxin.com",
   },
   themes: [
     [
@@ -55,13 +56,10 @@ const config = {
           //   'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
           remarkPlugins: [
             [
-              require('@docusaurus/remark-plugin-npm2yarn'),
+              require("@docusaurus/remark-plugin-npm2yarn"),
               {
                 sync: true,
-                converters: [
-                  'yarn',
-                  'pnpm'
-                ],
+                converters: ["yarn", "pnpm"],
               },
             ],
           ],
@@ -73,24 +71,21 @@ const config = {
           customCss: require.resolve("./src/css/custom.scss"),
         },
         sitemap: {
-          changefreq: 'daily',
+          changefreq: "daily",
           priority: 0.5,
-          ignorePatterns: ['/tags/**'],
-          filename: 'sitemap.xml',
+          ignorePatterns: ["/tags/**"],
+          filename: "sitemap.xml",
         },
         pages: {
           remarkPlugins: [
             [
-              require('@docusaurus/remark-plugin-npm2yarn'),
+              require("@docusaurus/remark-plugin-npm2yarn"),
               {
                 sync: true,
-                converters: [
-                  'yarn',
-                  'pnpm'
-                ],
+                converters: ["yarn", "pnpm"],
               },
             ],
-          ]
+          ],
         },
       }),
     ],
@@ -147,7 +142,8 @@ const config = {
       metadata: [
         {
           name: "keywords",
-          content: "Learntech Back-End，学习记录，笔记备份，文章备份，后端开发，APP开发",
+          content:
+            "Learntech Back-End，学习记录，笔记备份，文章备份，后端开发，APP开发",
         },
       ],
       zoom: {
@@ -168,43 +164,43 @@ const config = {
         },
         hideOnScroll: true,
         items: [
-          // {
-          //   type: "docSidebar",
-          //   sidebarId: "tutorialSidebar",
-          //   position: "left",
-          //   label: "开始",
-          // },
+          {
+            type: "docSidebar",
+            sidebarId: "nodeSidebar",
+            position: "left",
+            label: "开始",
+          },
           { to: "/about", label: "关于", position: "left" },
           {
-            type: 'dropdown',
-            label: '后端语言',
-            position: 'right',
+            type: "dropdown",
+            label: "后端语言",
+            position: "right",
             items: [
               {
                 to: "/node",
-                label: "Node"
+                label: "Node",
               },
               {
                 to: "/java",
-                label: "Java"
+                label: "Java",
               },
             ],
           },
           {
             to: "/server",
-            label: "Server",
+            label: "运维与服务器",
             position: "right",
           },
           {
-            to: "/sql",
-            label: "SQL",
+            to: "/database",
+            label: "数据库",
             position: "right",
           },
           {
             href: "https://front.learntech.cn:88",
             label: "大前端",
             position: "right",
-          }
+          },
         ],
       },
       footer: {
@@ -257,7 +253,16 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
         // https://prismjs.com/#supported-languages
-        additionalLanguages: ['java', 'php', 'bash', 'css', 'scss', 'json', 'sql', 'nginx'],
+        additionalLanguages: [
+          "java",
+          "php",
+          "bash",
+          "css",
+          "scss",
+          "json",
+          "sql",
+          "nginx",
+        ],
       },
     }),
 };
