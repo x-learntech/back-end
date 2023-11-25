@@ -93,7 +93,7 @@ writer.close();
 
 - 反射
 
-![2352-image-20201106165818756](https://cdn-static.learntech.cn/notes/20211005/2352-image-20201106165818756.png!min)
+![2352-image-20201106165818756](https://cdn-static.learntech.cn:88/notes/20211005/2352-image-20201106165818756.png!min)
 
 - 反转
 

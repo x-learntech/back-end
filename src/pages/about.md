@@ -11,7 +11,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 - Wechat：AmoyFE
 
-<img src='https://cdn-static.learntech.cn/notes/20230321/1600-amoyfe-wechat.jpg!min' title="欢迎加我微信 amoyFE" alt="AmoyFE" width="180" height="180"  />
+<img src='https://cdn-static.learntech.cn:88/notes/20230321/1600-amoyfe-wechat.jpg!min' title="欢迎加我微信 amoyFE" alt="AmoyFE" width="180" height="180"  />
 
 - E-mail：admin#learntech.cn (# => @)
 

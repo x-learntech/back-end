@@ -23,11 +23,11 @@
 
 用 Node.js 客户端技术(electron)实现，可以最大限度复用现有工程。
 
-PS：由于<Highlight color="#3498db">很多知识点其实是跟 JavaScript 重复的或者几乎一样的，就不再重复出现</Highlight>，可以参考：[大前端](https://front.learntech.cn/node/)
+PS：由于<Highlight color="#3498db">很多知识点其实是跟 JavaScript 重复的或者几乎一样的，就不再重复出现</Highlight>，可以参考：[大前端](https://front.learntech.cn:88/node/)
 
 ## BFF层（Backend for Frontend）
 
-![2331-KyAGEs](https://cdn-static.learntech.cn/notes/20211006/2331-KyAGEs.png!min)
+![2331-KyAGEs](https://cdn-static.learntech.cn:88/notes/20211006/2331-KyAGEs.png!min)
 
 - 对用户侧提供 HTTP 服务
 - 使用后端 RPC 服务
@@ -79,7 +79,7 @@ Node.js 的包管理工具
 - 确定一个进行 Input/Output 的系统。
 - 思考在 I/O 过程中，能不能进行其他 I/O。
 
-![2307-4E0HzM](https://cdn-static.learntech.cn/notes/20211006/2307-4E0HzM.png!min)
+![2307-4E0HzM](https://cdn-static.learntech.cn:88/notes/20211006/2307-4E0HzM.png!min)
 
 ## RPC 调用
 
@@ -94,9 +94,9 @@ Remote Procedure Call(远程过程调用)
   - 基于 TCP 或 UDP 协议
 - 寻址/负载均衡
   - Ajax：使用 DNS 进行寻址
-  ![2334-0iWKDQ](https://cdn-static.learntech.cn/notes/20211006/2334-0iWKDQ.png!min)
+  ![2334-0iWKDQ](https://cdn-static.learntech.cn:88/notes/20211006/2334-0iWKDQ.png!min)
   - RPC：使用特有服务进行寻址
-  ![2335-MIU2GT](https://cdn-static.learntech.cn/notes/20211006/2335-MIU2GT.png!min)
+  ![2335-MIU2GT](https://cdn-static.learntech.cn:88/notes/20211006/2335-MIU2GT.png!min)
 - TCP 通信方式
   - 单工通信
   - 半双工通信

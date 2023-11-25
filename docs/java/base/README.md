@@ -40,4 +40,4 @@
 
 比如：想要造一辆车，上来要先把车的各种属性定义出来，然后抽象成一个Car类。
 
-![0012-2zBPZ0](https://cdn-static.learntech.cn/notes/20211005/0012-2zBPZ0.png!min)
+![0012-2zBPZ0](https://cdn-static.learntech.cn:88/notes/20211005/0012-2zBPZ0.png!min)

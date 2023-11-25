@@ -26,7 +26,7 @@
 
 ### 1.1.异常结构
 
-![2330-wps1](https://cdn-static.learntech.cn/notes/20211005/2330-wps1.jpg!min)
+![2330-wps1](https://cdn-static.learntech.cn:88/notes/20211005/2330-wps1.jpg!min)
 
 ### 1.2.异常收集
 

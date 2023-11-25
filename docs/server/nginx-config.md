@@ -19,7 +19,7 @@ ps：C10K 就是 Client 10000 问题，即「在同时连接到服务器的客�
 
 nginx 采用了简单的文本格式的配置文件，下图总结了 nginx 指令一些特性。
 
-![1506-aZ48b1](https://cdn-static.learntech.cn/notes/20211115/1506-aZ48b1.png!min)
+![1506-aZ48b1](https://cdn-static.learntech.cn:88/notes/20211115/1506-aZ48b1.png!min)
 
 Nginx 配置文件主要分成四部分：main（全局设置）、server（主机设置）、upstream（上游服务器设置，主要为反向代理、负载均衡相关配置）和 location（URL 匹配特定位置后的设置），每部分包含若干个指令。
 
@@ -138,7 +138,7 @@ http 服务中，某些特定的 URL 对应的一系列配置项。location 是 
    - 忽略大小写的正则(以 `~*` 开头)
 5. 内部 location(以 `@` 开头)
 
-匹配顺序： ![1607-Y8QAMt](https://cdn-static.learntech.cn/notes/20211115/1607-Y8QAMt.png!min)
+匹配顺序： ![1607-Y8QAMt](https://cdn-static.learntech.cn:88/notes/20211115/1607-Y8QAMt.png!min)
 
 再总结一下就是：
 
@@ -152,7 +152,7 @@ http 服务中，某些特定的 URL 对应的一系列配置项。location 是 
 
 通用示例代码：base_learntech.rule
 
-```bash
+```nginx
     listen 443 ssl http2;
 
     ssl_certificate /etc/nginx/cert/learntech.cn/fullchain.pem;
@@ -210,7 +210,7 @@ http 服务中，某些特定的 URL 对应的一系列配置项。location 是 
 
 引入通用代码示例：
 
-```bash
+```nginx
 server {
     server_name www.learntech.cn;
     root /data/www/ruxin/learntech-note/notes/dist;
@@ -249,7 +249,7 @@ Nginx 主动设置 301 Moved Permanently 状态码只有一种情况，当用户
 
 Nginx 的访问控制模块默认就会安装，而且写法也非常简单，可以分别有多个 allow,deny，允许或禁止某个 ip 或 ip 段访问，依次满足任何一个规则就停止往下匹配。如：
 
-```bash
+```nginx
 location /nginx-status {
  stub_status on;
  access_log off;
@@ -262,7 +262,7 @@ location /nginx-status {
 
 ### 为访问的路径设置登录密码
 
-```bash
+```nginx
 # htpasswd -c htpasswd admin
 New passwd:
 Re-type new password:
@@ -282,7 +282,7 @@ Nginx 默认是不允许列出整个目录的。如需此功能，打开 nginx.c
 - `autoindex_localtime on;`
   默认为 off，显示的文件时间为 GMT 时间。改为 on 后，显示的文件时间为文件的服务器时间
 
-```bash
+```nginx
 # 列出图片
 location /images {
   root /var/www/nginx-default/images;
@@ -296,7 +296,7 @@ location /images {
 
 ### default.config
 
-```bash
+```nginx
 #user  nobody;
 worker_processes  1;
 
@@ -330,7 +330,7 @@ http {
 
 ### 经典的 80 端口设置
 
-```bash
+```nginx
 # 静态文件 demo
 server {
     listen       80;
@@ -405,7 +405,7 @@ server {
 
 ### 经典的 443 端口设置（https）
 
-```bash
+```nginx
 # 后端PHP CI框架 demo
 server {
     listen       443 ssl http2;
@@ -485,7 +485,7 @@ server {
 
 此方法也可以做本地反向代理，处理接口跨域问题。
 
-```bash
+```nginx
 upstream party_client {
     #weight 参数表示权值，权值越高被分配到的几率越大
     #1.down 表示单前的server暂时不参与负载
@@ -545,7 +545,7 @@ server {
 
 ### 强制 https，history 模式
 
-```bash
+```nginx
 # http to https
 server {
     listen 80;
@@ -572,7 +572,7 @@ server {
 
 > 指二级目录是一个独立的站点，通常对应 react 或者 Vue 框架中的 PUBLIC_PATH 属性。这边主要是利用了 alias。
 
-```bash
+```nginx
 # SPA 前端h5配置start
 location /h5/ {
   # 不缓存 html 或 htm 后缀页面
@@ -585,6 +585,27 @@ location /h5/ {
   try_files $uri $uri/ /index.html =404; # history 模式，404 重定向
 }
 # 前端h5配置end
+```
+
+### 转发
+
+比如，通过自己域名把http图片转发成https
+
+```nginx
+server {
+    server_name cdn-static.learntech.cn;
+
+    include /etc/nginx/conf.d/base_learntech.rule;
+
+    location / {
+        proxy_pass http://static.learntech.cn;
+        proxy_set_header Host $proxy_host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_read_timeout 120;
+        proxy_connect_timeout 120;
+    }
+}
 ```
 
 其他：[nginx 在线配置工具](https://nginxconfig.io/)

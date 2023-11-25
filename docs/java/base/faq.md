@@ -158,7 +158,7 @@ Spring Bean 生命周期比较复杂，可以分为创建和销毁两个过程�
 
 你可以参考下面示意图理解这个具体过程和先后顺序。
 
-![2133-qfXTPC](https://cdn-static.learntech.cn/notes/20211003/2133-qfXTPC.png!min)
+![2133-qfXTPC](https://cdn-static.learntech.cn:88/notes/20211003/2133-qfXTPC.png!min)
 
 第二，Spring Bean 的销毁过程会依次调用 DisposableBean 的 destroy 方法和 Bean 自身定制的 destroy 方法。
 
