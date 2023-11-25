@@ -24,7 +24,7 @@
 
 **作用**：该值表示构建系统本地仓库的路径。
 
-Mac平台其默认值：`~/.m2/repository`。
+Mac 平台其默认值：`~/.m2/repository`。
 
 ```xml
 <localRepository>${user.home}/.m2/repository</localRepository>
@@ -32,9 +32,9 @@ Mac平台其默认值：`~/.m2/repository`。
 
 ### 1.2、InteractiveMode
 
-**作用**：表示maven是否需要和用户交互以获得输入。
+**作用**：表示 maven 是否需要和用户交互以获得输入。
 
-如果maven需要和用户交互以获得输入，则设置成true，反之则应为false。默认为true。
+如果 maven 需要和用户交互以获得输入，则设置成 true，反之则应为 false。默认为 true。
 
 ```xml
 <interactiveMode>true</interactiveMode>
@@ -42,9 +42,9 @@ Mac平台其默认值：`~/.m2/repository`。
 
 ### 1.3、UsePluginRegistry
 
-**作用**：maven是否需要使用plugin-registry.xml文件来管理插件版本。
+**作用**：maven 是否需要使用 plugin-registry.xml 文件来管理插件版本。
 
-如果需要让maven使用文件~/.m2/plugin-registry.xml来管理插件版本，则设为true。默认为false。
+如果需要让 maven 使用文件 `~/.m2/plugin-registry.xml` 来管理插件版本，则设为 true。默认为 false。
 
 ```xml
 <usePluginRegistry>false</usePluginRegistry>
@@ -52,9 +52,9 @@ Mac平台其默认值：`~/.m2/repository`。
 
 ### 1.4、Offline
 
-**作用**：这个属性表示在Maven进行项目编译和部署等操作时是否允许Maven进行联网来下载所需要的信息。
+**作用**：这个属性表示在 Maven 进行项目编译和部署等操作时是否允许 Maven 进行联网来下载所需要的信息。
 
-如果构建系统需要在离线模式下运行，则为true，默认为false。当由于网络设置原因或者安全因素，构建服务器不能连接远程仓库的时候，该配置就十分有用。
+如果构建系统需要在离线模式下运行，则为 true，默认为 false。当由于网络设置原因或者安全因素，构建服务器不能连接远程仓库的时候，该配置就十分有用。
 
 ```xml
 <offline>false</offline>
@@ -62,9 +62,9 @@ Mac平台其默认值：`~/.m2/repository`。
 
 ### 1.5、PluginGroups
 
- **作用**：在pluginGroups元素下面可以定义一系列的pluginGroup元素。表示当通过plugin的前缀来解析plugin的时候到哪里寻找。pluginGroup元素指定的是plugin的groupId。
+**作用**：在 pluginGroups 元素下面可以定义一系列的 pluginGroup 元素。表示当通过 plugin 的前缀来解析 plugin 的时候到哪里寻找。pluginGroup 元素指定的是 plugin 的 groupId。
 
-默认情况下，Maven会自动把 org.apache.maven.plugins 和 org.codehaus.mojo 添加到pluginGroups下。
+默认情况下，Maven 会自动把 `org.apache.maven.plugins` 和 `org.codehaus.mojo` 添加到 pluginGroups 下。
 
 ```xml
 <pluginGroups>
@@ -75,7 +75,7 @@ Mac平台其默认值：`~/.m2/repository`。
 
 ### 1.6、Servers
 
-**作用**：一般，仓库的下载和部署是在pom.xml文件中的 repositories 和 distributionManagement 元素中定义的。然而，一般类似用户名、密码（**有些仓库访问是需要安全认证的**）等信息不应该在pom.xml文件中配置，这些信息可以配置在 settings.xml 中。
+**作用**：一般，仓库的下载和部署是在 pom.xml 文件中的 repositories 和 distributionManagement 元素中定义的。然而，一般类似用户名、密码（**有些仓库访问是需要安全认证的**）等信息不应该在 pom.xml 文件中配置，这些信息可以配置在 settings.xml 中。
 
 ```xml
 <!--配置服务端的一些设置。一些设置如安全证书不应该和pom.xml一起分发。这种类型的信息应该存在于构建服务器上的settings.xml文件中。 -->
@@ -104,7 +104,7 @@ Mac平台其默认值：`~/.m2/repository`。
 
 **作用**：用于定义一系列的远程仓库的镜像。
 
-我们可以在pom中定义一个下载工件的时候所使用的远程仓库。但是有时候这个远程仓库会比较忙，所以这个时候人们就想着给它创建镜像以缓解远程仓库的压力，也就是说会把对远程仓库的请求转换到对其镜像地址的请求。每个远程仓库都会有一个id，这样我们就可以创建自己的mirror来关联到该仓库，那么以后需要从远程仓库下载工件的时候Maven就可以从我们定义好的mirror站点来下载，这可以很好的缓解我们远程仓库的压力。在我们定义的mirror中每个远程仓库都只能有一个mirror与它关联，也就是说你不能同时配置多个mirror的mirrorOf指向同一个repositoryId。
+我们可以在 pom 中定义一个下载工件的时候所使用的远程仓库。但是有时候这个远程仓库会比较忙，所以这个时候人们就想着给它创建镜像以缓解远程仓库的压力，也就是说会把对远程仓库的请求转换到对其镜像地址的请求。每个远程仓库都会有一个 id，这样我们就可以创建自己的 mirror 来关联到该仓库，那么以后需要从远程仓库下载工件的时候 Maven 就可以从我们定义好的 mirror 站点来下载，这可以很好的缓解我们远程仓库的压力。在我们定义的 mirror 中每个远程仓库都只能有一个 mirror 与它关联，也就是说你不能同时配置多个 mirror 的 mirrorOf 指向同一个 repositoryId。
 
 ```xml
 <mirrors>
@@ -154,14 +154,14 @@ Mac平台其默认值：`~/.m2/repository`。
 
 **作用**：根据环境参数来调整构建配置的列表。
 
-settings.xml中的profile元素是pom.xml中profile元素的裁剪版本。它包含了id、activation、repositories、pluginRepositories和 properties元素。这里的profile元素只包含这五个子元素是因为这里只关心构建系统这个整体（这正是settings.xml文件的角色定位），而非单独的项目对象模型设置。如果一个settings.xml中的profile被激活，它的值会覆盖任何其它定义在pom.xml中带有相同id的profile。当所有的约束条件都满足的时候就会激活这个profile。
+settings.xml 中的 profile 元素是 pom.xml 中 profile 元素的裁剪版本。它包含了 `id、activation、repositories、pluginRepositories` 和 properties 元素。这里的 profile 元素只包含这五个子元素是因为这里只关心构建系统这个整体（这正是 settings.xml 文件的角色定位），而非单独的项目对象模型设置。如果一个 settings.xml 中的 profile 被激活，它的值会覆盖任何其它定义在 pom.xml 中带有相同 id 的 profile。当所有的约束条件都满足的时候就会激活这个 profile。
 
 ```xml
 <!-- 影响下载顺序的是profiles标签的配置顺序(后面配置的仓库先下载), 而不是activeProfiles的顺序 -->
 <profiles>
     <profile>
 　　<!-- profile的唯一标识 -->
-        <id>test</id>     
+        <id>test</id>
         <!-- 自动触发profile的条件逻辑 -->
         <activation>
             <activeByDefault>false</activeByDefault>
@@ -194,15 +194,15 @@ settings.xml中的profile元素是pom.xml中profile元素的裁剪版本。它�
 
 #### 1.9.1、Activation
 
-**作用**：自动触发profile的条件逻辑。这是profile中最重要的元素。跟pom.xml中的profile一样，settings.xml中的profile也可以在特定环境下改变一些值，而这些环境是通过activation元素来指定的。activation元素并不是激活profile的唯一方式。settings.xml文件中的activeProfile元素可以包含profile的id。profile也可以通过在命令行，使用-P标记和逗号分隔的列表来显式的激活（如，-P test）。
-**jdk**：表示当jdk的版本满足条件的时候激活，在这里是1.6。这里的版本还可以用一个范围来表示，如
->
- <jdk>[1.4,1.7)</jdk> 表示1.4、1.5和1.6满足；
- <jdk>[1.4,1.7]</jdk> 表示1.4、1.5、1.6和1.7满足；
+**作用**：自动触发 profile 的条件逻辑。这是 profile 中最重要的元素。跟 pom.xml 中的 profile 一样，settings.xml 中的 profile 也可以在特定环境下改变一些值，而这些环境是通过 activation 元素来指定的。activation 元素并不是激活 profile 的唯一方式。settings.xml 文件中的 activeProfile 元素可以包含 profile 的 id。profile 也可以通过在命令行，使用-P 标记和逗号分隔的列表来显式的激活（如，-P test）。
+**jdk**：表示当 jdk 的版本满足条件的时候激活，在这里是 1.6。这里的版本还可以用一个范围来表示，如
+
+> <jdk>[1.4,1.7)</jdk> 表示 1.4、1.5 和 1.6 满足；
+> <jdk>[1.4,1.7]</jdk> 表示 1.4、1.5、1.6 和 1.7 满足；
 
 **os**：表示当操作系统满足条件的时候激活。
-**property**：property是键值对的形式，表示当Maven检测到了这样一个键值对的时候就激活该profile。
-(1)下面的示例表示当存在属性hello的时候激活该profile。
+**property**：property 是键值对的形式，表示当 Maven 检测到了这样一个键值对的时候就激活该 profile。
+(1)下面的示例表示当存在属性 hello 的时候激活该 profile。
 
 ```xml
 <property>
@@ -210,7 +210,7 @@ settings.xml中的profile元素是pom.xml中profile元素的裁剪版本。它�
 </property>
 ```
 
-(2)下面的示例表示当属性hello的值为world的时候激活该profile。
+(2)下面的示例表示当属性 hello 的值为 world 的时候激活该 profile。
 
 ```xml
 <property>
@@ -219,13 +219,13 @@ settings.xml中的profile元素是pom.xml中profile元素的裁剪版本。它�
 </property>
 ```
 
-这个时候如果要激活该profile的话，可以在调用Maven指令的时候加上参数hello并指定其值为world，如：
+这个时候如果要激活该 profile 的话，可以在调用 Maven 指令的时候加上参数 hello 并指定其值为 world，如：
 
 ```bash
 mvn compile –Dhello=world
 ```
 
-**file**：表示当文件存在或不存在的时候激活，exists表示存在，missing表示不存在。如下面例子表示当文件hello/world不存在的时候激活该profile。
+**file**：表示当文件存在或不存在的时候激活，exists 表示存在，missing 表示不存在。如下面例子表示当文件 hello/world 不存在的时候激活该 profile。
 
 ```xml
 <profile>
@@ -237,9 +237,8 @@ mvn compile –Dhello=world
 </profile>
 ```
 
-**activeByDefault**：当其值为true的时候表示如果没有其他的profile处于激活状态的时候，该profile将自动被激活。
-**properties**：用于定义属性键值对的。当该profile是激活状态的时候，properties下面指定的属性都可以在pom.xml中使用。对应profile的扩展属性列表。
-maven属性和ant中的属性一样，可以用来存放一些值。这些值可以在pom.xml中的任何地方使用标记${X}来使用，这里X是指属性的名称。属性有五种不同的形式，并且都能在settings.xml文件中访问。
+**activeByDefault**：当其值为 true 的时候表示如果没有其他的 profile 处于激活状态的时候，该 profile 将自动被激活。
+**properties**：用于定义属性键值对的。当该 profile 是激活状态的时候，properties 下面指定的属性都可以在 pom.xml 中使用。对应 profile 的扩展属性列表。maven 属性和 ant 中的属性一样，可以用来存放一些值。这些值可以在 pom.xml 中的任何地方使用标记 `${X}` 来使用，这里 X 是指属性的名称。属性有五种不同的形式，并且都能在 settings.xml 文件中访问。
 
 ```xml
 <!--
@@ -254,8 +253,8 @@ maven属性和ant中的属性一样，可以用来存放一些值。这些值可
 </properties>
 ```
 
-注：如果该profile被激活，则可以在pom.xml中使用 ${user.install} 。
-**repositories**：用于定义远程仓库的，当该profile是激活状态的时候，这里面定义的远程仓库将作为当前pom的远程仓库。它是maven用来填充构建系统本地仓库所使用的一组远程仓库。
+注：如果该 profile 被激活，则可以在 pom.xml 中使用 `${user.install}` 。
+**repositories**：用于定义远程仓库的，当该 profile 是激活状态的时候，这里面定义的远程仓库将作为当前 pom 的远程仓库。它是 maven 用来填充构建系统本地仓库所使用的一组远程仓库。
 
 ```xml
 <repositories>
@@ -290,10 +289,10 @@ maven属性和ant中的属性一样，可以用来存放一些值。这些值可
 
 (1) releases、snapshots：这是对于工件的类型的限制。
 (2) enabled：表示这个仓库是否允许这种类型的工件
-(3) updatePolicy：表示多久尝试更新一次。可选值有always、daily、interval:minutes（表示每多久更新一次）和never。
-(4) checksumPolicy：当Maven在部署项目到仓库的时候会连同校验文件一起提交，checksumPolicy表示当这个校验文件缺失或不正确的时候该如何处理，可选项有ignore、fail和warn。
+(3) updatePolicy：表示多久尝试更新一次。可选值有 always、daily、interval:minutes（表示每多久更新一次）和 never。
+(4) checksumPolicy：当 Maven 在部署项目到仓库的时候会连同校验文件一起提交，checksumPolicy 表示当这个校验文件缺失或不正确的时候该如何处理，可选项有 ignore、fail 和 warn。
 
-**pluginRepositories**：在Maven中有两种类型的仓库，一种是存储工件的仓库，另一种就是存储plugin插件的仓库。pluginRepositories的定义和repositories的定义类似，它表示Maven在哪些地方可以找到所需要的插件。和repository类似，只是repository是管理jar包依赖的仓库，pluginRepositories则是管理插件的仓库。maven插件是一种特殊类型的构件。由于这个原因，插件仓库独立于其它仓库。pluginRepositories元素的结构和repositories元素的结构类似。每个pluginRepository元素指定一个Maven可以用来寻找新插件的远程地址。
+**pluginRepositories**：在 Maven 中有两种类型的仓库，一种是存储工件的仓库，另一种就是存储 plugin 插件的仓库。pluginRepositories 的定义和 repositories 的定义类似，它表示 Maven 在哪些地方可以找到所需要的插件。和 repository 类似，只是 repository 是管理 jar 包依赖的仓库，pluginRepositories 则是管理插件的仓库。maven 插件是一种特殊类型的构件。由于这个原因，插件仓库独立于其它仓库。pluginRepositories 元素的结构和 repositories 元素的结构类似。每个 pluginRepository 元素指定一个 Maven 可以用来寻找新插件的远程地址。
 
 ```xml
 <pluginRepositories>
@@ -355,9 +354,9 @@ maven属性和ant中的属性一样，可以用来存放一些值。这些值可
 
 ### **1.10、ActiveProfiles**
 
-**作用**：手动激活profiles的列表，按照profile被应用的顺序定义activeProfile。
-该元素包含了一组activeProfile元素，每个activeProfile都含有一个profile id。任何在activeProfile中定义的profile id，不论环境设置如何，其对应的 profile都会被激活。如果没有匹配的profile，则什么都不会发生。
-例如，env-test是一个activeProfile，则在pom.xml（或者profile.xml）中对应id的profile会被激活。如果运行过程中找不到这样一个profile，Maven则会像往常一样运行。
+**作用**：手动激活 profiles 的列表，按照 profile 被应用的顺序定义 activeProfile。
+该元素包含了一组 activeProfile 元素，每个 activeProfile 都含有一个 profile id。任何在 activeProfile 中定义的 profile id，不论环境设置如何，其对应的 profile 都会被激活。如果没有匹配的 profile，则什么都不会发生。
+例如，env-test 是一个 activeProfile，则在 pom.xml（或者 profile.xml）中对应 id 的 profile 会被激活。如果运行过程中找不到这样一个 profile，Maven 则会像往常一样运行。
 
 ```xml
 <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"

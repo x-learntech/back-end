@@ -55,9 +55,9 @@ spring.profiles.active = dev
 3、配置文件加载顺序：
 
 1. 当前 jar 包内部的 application.properties 和 application.yml
-2. 当前 jar 包内部的 application-{profile}.properties 和 application-{profile}.yml
+2. 当前 jar 包内部的 `application-{profile}.properties` 和 `application-{profile}.yml`
 3. 引用的外部 jar 包的 application.properties 和 application.yml
-4. 引用的外部 jar 包的 application-{profile}.properties 和 application-{profile}.yml
+4. 引用的外部 jar 包的 `application-{profile}.properties` 和 `application-{profile}.yml`
 
 4、指定环境优先，外部优先，后面的可以覆盖前面的同名配置项
 
