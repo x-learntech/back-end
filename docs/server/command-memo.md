@@ -186,7 +186,20 @@ scp -P 「端口号，默认：22」 「来源文件」 「目标路径」
 rsync 「来源文件」 「目标文件」
 ```
 
-仅传输有差异内容，性能更好，参数更复杂。
+仅传输有差异内容，性能更好，参数更复杂。如果 ssh 命令有附加的参数，则必须使用 `-e` 参数指定所要执行的 SSH 命令。
+
+```bash
+# 下面 -e ssh 可以省略。
+rsync -av -e ssh source/ user@remote_host:/destination
+# 服务器下载同步文件到本地
+rsync -av -e "ssh -p 1022" user@ip:/data/www/my-admin/servers/.env.production /Users/ruxin/websites/nest-admin 
+# 本地文件同步到服务器
+rsync -av -e "ssh -p 1022" /Users/ruxin/websites/nest-admin/.env.production user@ip:/data/www/my-admin/servers/
+#  --exclude 参数排除文件，如下排除 file1.txt 和 .开头的文件
+rsync -av --exclude={'file1.txt','dir1/.*'} source/ destination
+```
+
+[更多请查阅](https://www.ruanyifeng.com/blog/2020/08/rsync.html)
 
 ## 改密码
 

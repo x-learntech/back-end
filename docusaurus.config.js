@@ -132,6 +132,10 @@ const config = {
     //     disableInDev: false,
     //   },
     // ],
+    [
+     require("./src/plugins/plugin-baidu-analytics"),
+     { trackingID: "0cc567871b4776b1c841ab6c0679989f" }, //  传入trackingID参数
+    ],
   ],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
