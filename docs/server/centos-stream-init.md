@@ -4,7 +4,7 @@
 
 ```bash
 # 查看centos的版本
-cat /etc/redhat-release 
+cat /etc/redhat-release
 
 # 更新系统软件
 yum update -y
@@ -53,39 +53,32 @@ systemctl disable firewalld.service #禁止firewall开机启动
 # 开启80端口:
 firewall-cmd --zone=public --add-port=80/tcp --permanent
 
-firewall-cmd --permanent --zone=public --add-service=http 
+firewall-cmd --permanent --zone=public --add-service=http
 firewall-cmd --permanent --zone=public --add-service=https
 ```
 
 > 命令含义：
---zone #作用域
---add-port=80/tcp  #添加端口，格式为：端口/通讯协议
---permanent   #永久生效，没有此参数重启后失效
+> --zone #作用域
+> --add-port=80/tcp #添加端口，格式为：端口/通讯协议
+> --permanent #永久生效，没有此参数重启后失效
 
 ## 连接时间设置
 
-- 修改/etc/ssh/sshd_config文件，将ClientAliveInterval 0和ClientAliveCountMax 3的注释符号去掉，将ClientAliveInterval对应的0改成60。
->
-ClientAliveInterval指定了服务器端向客户端请求消息的时间间隔，默认是0，不发送。而ClientAliveInterval 60表示每分钟发送一次，然后客户端响应，这样就保持长连接了。
-ClientAliveCountMax，使用默认值3即可。ClientAliveCountMax表示服务器发出请求后客户端没有响应的次数达到一定值，就自动断开。
-保存后退出，然后reload ssh服务，使配置生效： service sshd reload
+修改/etc/ssh/sshd_config 文件，将 ClientAliveInterval 0 和 ClientAliveCountMax 3 的注释符号去掉，将 ClientAliveInterval 对应的 0 改成 60。
 
-> 使用命令直接用户修改配置文件，设置“TMOUT=1800”，即超时时间为30分钟
+- ClientAliveInterval 指定了服务器端向客户端请求消息的时间间隔，默认是 0，不发送。而 ClientAliveInterval 60 表示每分钟发送一次，然后客户端响应，这样就保持长连接了。
+- ClientAliveCountMax，使用默认值 3 即可。ClientAliveCountMax 表示服务器发出请求后客户端没有响应的次数达到一定值，就自动断开。
 
-```bash
-$ vi /etc/profile # 添加下面两行
-#设置为30分钟
-TMOUT=1800
-```
+保存后退出，然后 reload ssh 服务，使配置生效： `service sshd reload`
 
-## 通过ssh免密登录
+## 通过 ssh 免密登录
 
 ```bash
 # 本地生成sshkey，运行命令,一路回车
 $ ssh-keygen
 # 把公匙复制到目标主机的.ssh/authorized_keys 中
 # 目标主机生成authorized_keys（若没有authorized_keys时）
-$ cat ~/id_rsa.pub >> ~/.ssh/authorized_keys 
+$ cat ~/id_rsa.pub >> ~/.ssh/authorized_keys
 # 确保没被注释
 $ AuthorizedKeysFile .ssh/authorized_keys
 # 配置合适的权限（手动时）
@@ -108,11 +101,11 @@ PS：示例为阿里云源
 # geographically close to the client.  You should use this for CentOS updates
 # unless you are manually picking other mirrors.
 #
-# If the mirrorlist= does not work for you, as a fall back you can try the 
+# If the mirrorlist= does not work for you, as a fall back you can try the
 # remarked out baseurl= line instead.
 #
 #
- 
+
 [base]
 name=CentOS-$releasever - Base - mirrors.aliyun.com
 #failovermethod=priority
@@ -121,7 +114,7 @@ baseurl=https://mirrors.aliyun.com/centos-stream/$stream/BaseOS/$basearch/os/
         http://mirrors.cloud.aliyuncs.com/centos-stream/$stream/BaseOS/$basearch/os/
 gpgcheck=1
 gpgkey=https://mirrors.aliyun.com/centos-stream/RPM-GPG-KEY-CentOS-Official
- 
+
 #additional packages that may be useful
 #[extras]
 #name=CentOS-$releasever - Extras - mirrors.aliyun.com
@@ -131,7 +124,7 @@ gpgkey=https://mirrors.aliyun.com/centos-stream/RPM-GPG-KEY-CentOS-Official
 #        http://mirrors.cloud.aliyuncs.com/centos-stream/$stream/extras/$basearch/os/
 #gpgcheck=1
 #gpgkey=https://mirrors.aliyun.com/centos-stream/RPM-GPG-KEY-CentOS-Official
- 
+
 #additional packages that extend functionality of existing packages
 [centosplus]
 name=CentOS-$releasever - Plus - mirrors.aliyun.com
@@ -142,7 +135,7 @@ baseurl=https://mirrors.aliyun.com/centos-stream/$stream/centosplus/$basearch/os
 gpgcheck=1
 enabled=0
 gpgkey=https://mirrors.aliyun.com/centos-stream/RPM-GPG-KEY-CentOS-Official
- 
+
 [PowerTools]
 name=CentOS-$releasever - PowerTools - mirrors.aliyun.com
 #failovermethod=priority
@@ -203,7 +196,7 @@ dnf info zsh
 # 安装
 dnf install zsh
 # 从指定的repo安装一个rpm包
-dnf --enablerepo=BaseOS install zsh 
+dnf --enablerepo=BaseOS install zsh
 # 仅下载，不安装
 dnf download zsh
 # 删除包
@@ -226,7 +219,7 @@ dnf check-update
 sudo dnf -y install git
 
 # 查看版本
-git --version 
+git --version
 # git version 2.31.1
 ```
 
@@ -266,7 +259,7 @@ GRANT ALL ON *.* TO 'nufun'@'localhost';
 flush privileges;
 ```
 
-PS：如果是低配版本的云服务器，比如1核1G，那么建议关闭性能分析。不然，默认会占用约40%的内存，优化后至少可以降一半。
+PS：如果是低配版本的云服务器，比如 1 核 1G，那么建议关闭性能分析。不然，默认会占用约 40%的内存，优化后至少可以降一半。
 
 ```bash
 # /etc/my.cnf
@@ -332,7 +325,7 @@ java --version
 
 ## docker
 
-PS：后续环境可能直接走docker了，低配版服务器不建议
+PS：后续环境可能直接走 docker 了，低配版服务器不建议
 
 手动更换为阿里云镜像
 
