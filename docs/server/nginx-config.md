@@ -19,7 +19,7 @@ ps：C10K 就是 Client 10000 问题，即「在同时连接到服务器的客�
 
 nginx 采用了简单的文本格式的配置文件，下图总结了 nginx 指令一些特性。
 
-![1506-aZ48b1](https://cdn-static.learntech.cn:88/notes/20211115/1506-aZ48b1.png!min)
+![1506-aZ48b1](https://cdn-static.learntech.cn/notes/20211115/1506-aZ48b1.png!min)
 
 Nginx 配置文件主要分成四部分：main（全局设置）、server（主机设置）、upstream（上游服务器设置，主要为反向代理、负载均衡相关配置）和 location（URL 匹配特定位置后的设置），每部分包含若干个指令。
 
@@ -138,7 +138,7 @@ http 服务中，某些特定的 URL 对应的一系列配置项。location 是 
    - 忽略大小写的正则(以 `~*` 开头)
 5. 内部 location(以 `@` 开头)
 
-匹配顺序： ![1607-Y8QAMt](https://cdn-static.learntech.cn:88/notes/20211115/1607-Y8QAMt.png!min)
+匹配顺序： ![1607-Y8QAMt](https://cdn-static.learntech.cn/notes/20211115/1607-Y8QAMt.png!min)
 
 再总结一下就是：
 
@@ -589,7 +589,7 @@ location /h5/ {
 
 ### 转发
 
-比如，通过自己域名把http图片转发成https
+比如，通过自己域名把 http 图片转发成 https
 
 ```nginx
 server {

@@ -13,7 +13,7 @@ Java 是面向对象的语言。
 
 由类生成对象的过程叫做实例化。如下图所示，类就相当于汽车设计图，生产的车好比就是实例化。
 
-![0012-2zBPZ0](https://cdn-static.learntech.cn:88/notes/20211005/0012-2zBPZ0.png!min)
+![0012-2zBPZ0](https://cdn-static.learntech.cn/notes/20211005/0012-2zBPZ0.png!min)
 
 ## Java 类模板和使用对象
 
@@ -92,7 +92,7 @@ Comparator 和 Comparable 比较：
 
 由于基本数据类型没有类和对象的概念，java 的设计理念是万事万物皆对象。所以特定为每一种基本数据类型量身定制了一个属于自己的类，称为包装类。
 
-![2250-DpDcIT](https://cdn-static.learntech.cn:88/notes/20211005/2250-DpDcIT.png!min)
+![2250-DpDcIT](https://cdn-static.learntech.cn/notes/20211005/2250-DpDcIT.png!min)
 
 在这八个类名中，除了 Integer 和 Character 类以后，其它六个类的类名和基本数据类型一致，只是类名的第一个字母大写即可。
 
@@ -161,7 +161,7 @@ System.out.println(s);
 14. 分割：split()
 15. 正则匹配 matches(String reg) 返回 boolean
 
-**PS：在Java中，==比较的是对象引用，而equals比较的是值。**
+**PS：在 Java 中，==比较的是对象引用，而 equals 比较的是值。**
 
 - **构造方法**
 
@@ -180,11 +180,11 @@ new String(byte[] bs)
 
 1.2 当对字符串进行修改的时候，特别是字符串对象经常改变的情况下，需要使用 StringBuffer 和 StringBuilder 类。和 String 类不同的是，StringBuffer 和 StringBuilder 类的对象能够被多次的修改，并且不产生新的未使用对象。StringBuilder 类在 Java 5 中被提出，它和 StringBuffer 之间的最大不同在于 StringBuilder 的方法不是线程安全的（不能同步访问）。由于 StringBuilder 相较于 StringBuffer 有速度优势，所以多数情况下建议使用 StringBuilder 类。然而在应用程序要求线程安全的情况下，则必须使用 StringBuffer 类。
 
-![2320-1603843891502](https://cdn-static.learntech.cn:88/notes/20211005/2320-1603843891502.png!min)
+![2320-1603843891502](https://cdn-static.learntech.cn/notes/20211005/2320-1603843891502.png!min)
 
 - 继承结构图
 
-![2320-1603844129113](https://cdn-static.learntech.cn:88/notes/20211005/2320-1603844129113.png!min)
+![2320-1603844129113](https://cdn-static.learntech.cn/notes/20211005/2320-1603844129113.png!min)
 
 2.相同
 
@@ -205,7 +205,7 @@ StringBuffer 和 StringBuilder 用法一样，
 
 ## IO 流
 
-![2339-image-20201104163012878](https://cdn-static.learntech.cn:88/notes/20211005/2339-image-20201104163012878.png!min)
+![2339-image-20201104163012878](https://cdn-static.learntech.cn/notes/20211005/2339-image-20201104163012878.png!min)
 
 ### File 类
 

@@ -8,7 +8,7 @@
 
 如下是在 IDEA 中启动 Debug 模式，进入断点后的界面。
 
-![1242-DYxNUX](https://cdn-static.learntech.cn:88/notes/20211010/1242-DYxNUX.png!min)
+![1242-DYxNUX](https://cdn-static.learntech.cn/notes/20211010/1242-DYxNUX.png!min)
 
 就简单说下图中标注的地方：
 

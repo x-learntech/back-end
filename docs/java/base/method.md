@@ -79,7 +79,7 @@
 
 ### 访问修饰符
 
-![2206-rSDx4a](https://cdn-static.learntech.cn:88/notes/20211005/2206-rSDx4a.png!min)
+![2206-rSDx4a](https://cdn-static.learntech.cn/notes/20211005/2206-rSDx4a.png!min)
 
 1. 类的访问修饰符：
 
@@ -161,7 +161,7 @@
 
 重写和重载(Overloading)的区别：
 
-![2224-dn4Fcp](https://cdn-static.learntech.cn:88/notes/20211005/2224-dn4Fcp.png!min)
+![2224-dn4Fcp](https://cdn-static.learntech.cn/notes/20211005/2224-dn4Fcp.png!min)
 
 关于重载和重写，你应该知道以下几点：
 

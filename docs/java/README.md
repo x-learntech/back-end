@@ -4,7 +4,7 @@ Java 名字的由来，实际上是一个有趣的故事。
 
 我们所见到的 Java 标志，总是一杯热咖啡，这杯热咖啡你很难与计算机编程联想到一起。这杯热咖啡：Java 这个名字的由来，是 Java 创始人员团队中其中一名成员由于灵感想到的，想起自己在 Java 岛（爪哇岛）上曾喝过一种美味的咖啡，于是这种计算机编程语言就命名为 Java。
 
-![2130-DfFehp](https://cdn-static.learntech.cn:88/notes/20211003/2130-DfFehp.png!min)
+![2130-DfFehp](https://cdn-static.learntech.cn/notes/20211003/2130-DfFehp.png!min)
 
 谈谈你对 Java 平台的理解？“Java 是解释执行”，这句话正确吗？
 
@@ -16,18 +16,18 @@ Java 本身是一种面向对象的语言，最显著的特性有两个方面，
 
 JAVA 跨平台原理：
 
-![2020-JAVA跨平台原理](https://cdn-static.learntech.cn:88/notes/20211001/2020-JAVA跨平台原理.png!min)
+![2020-JAVA跨平台原理](https://cdn-static.learntech.cn/notes/20211001/2020-JAVA跨平台原理.png!min)
 
 命令行编译运行，此过程涉及到两个命令：javac 编译，java 运行
 
 - Javac 命令：检查 java 程序是否有单词拼写和语法错误
 - Java 命令：调用 jvm（java 虚拟机）来运行程序，程序不允许有逻辑错误。
 
-各种不同的平台的虚拟机都使用统一的程序存储格式——字节码（ByteCode）是构成平台无关性的另一个基石。Java虚拟机只与由字节码组成的Class文件进行交互。
+各种不同的平台的虚拟机都使用统一的程序存储格式——字节码（ByteCode）是构成平台无关性的另一个基石。Java 虚拟机只与由字节码组成的 Class 文件进行交互。
 
-我们说Java语言可以Write Once ,Run Anywhere。这里的Write其实指的就是生成Class文件的过程。
+我们说 Java 语言可以 Write Once ,Run Anywhere。这里的 Write 其实指的就是生成 Class 文件的过程。
 
-因为Java Class文件可以在任何平台创建，也可以被任何平台的Java虚拟机装载并执行，所以才有了Java的平台无关性。
+因为 Java Class 文件可以在任何平台创建，也可以被任何平台的 Java 虚拟机装载并执行，所以才有了 Java 的平台无关性。
 
 ## [Java 基础](base/)
 
@@ -55,7 +55,7 @@ java 开发中已被占用并赋予特殊含义的单词，在创造 java 语言
 
 命名规则：
 
-- 整个变量名的取名可用范围：大小写字母、_ 、$、￥、数字，遵循驼峰命名法
+- 整个变量名的取名可用范围：大小写字母、\_ 、$、￥、数字，遵循驼峰命名法
 - 其中变量名开头第一个字符不能以数字开头，不用中文
 
 ### Java 程序的结构
@@ -76,7 +76,7 @@ public class Hello {
 
 Java 中的关键字是有对编译器有特殊意义的词。比如 class 是用来定义类的关键字，编译器遇到 class 就知道这是定义了一个类。
 
-![1936-OjONcR](https://cdn-static.learntech.cn:88/notes/20211003/1936-OjONcR.png!min)
+![1936-OjONcR](https://cdn-static.learntech.cn/notes/20211003/1936-OjONcR.png!min)
 
 二、保留字
 
@@ -100,7 +100,7 @@ short 类型在有的需求中会用到，比如：对于登录账号的状态�
 
 ### Java 基本数据类型的范围
 
-![1958-k04SRD](https://cdn-static.learntech.cn:88/notes/20211003/1958-k04SRD.png!min)
+![1958-k04SRD](https://cdn-static.learntech.cn/notes/20211003/1958-k04SRD.png!min)
 
 备注：
 
@@ -112,7 +112,7 @@ short 类型在有的需求中会用到，比如：对于登录账号的状态�
 
 转义字符是一些有特殊意义的字符，用来表示常见的不能显示的字符。下面介绍一下所有转义字符和他们所对应的意义：
 
-![2003-c6MxVh](https://cdn-static.learntech.cn:88/notes/20211003/2003-c6MxVh.png!min)
+![2003-c6MxVh](https://cdn-static.learntech.cn/notes/20211003/2003-c6MxVh.png!min)
 
 ### Java 方法
 
@@ -143,7 +143,7 @@ short 类型在有的需求中会用到，比如：对于登录账号的状态�
 
 ### Java 异常
 
-![2037-kDmrqM](https://cdn-static.learntech.cn:88/notes/20211003/2037-kDmrqM.png!min)
+![2037-kDmrqM](https://cdn-static.learntech.cn/notes/20211003/2037-kDmrqM.png!min)
 
 ## spring-boot
 
@@ -157,4 +157,4 @@ short 类型在有的需求中会用到，比如：对于登录账号的状态�
 
 ## 扩展阅读
 
-[To Be Top Javaer - Java工程师成神之路](https://github.com/hollischuang/toBeTopJavaer)
+[To Be Top Javaer - Java 工程师成神之路](https://github.com/hollischuang/toBeTopJavaer)

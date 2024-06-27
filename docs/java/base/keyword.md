@@ -2,7 +2,7 @@
 
 ## 类、接口、方法、变量、代码块修饰符
 
-![1021-9KFMtT](https://cdn-static.learntech.cn:88/notes/20211004/1021-9KFMtT.jpg!min)
+![1021-9KFMtT](https://cdn-static.learntech.cn/notes/20211004/1021-9KFMtT.jpg!min)
 
 1、class 类
 
@@ -151,11 +151,11 @@ Java 不是完美的，Java 的不足除了体现在运行速度上要比传统�
 
 ## 基本数据类型
 
-![2333-YpoymU](https://cdn-static.learntech.cn:88/notes/20211004/2333-YpoymU.jpg!min)
+![2333-YpoymU](https://cdn-static.learntech.cn/notes/20211004/2333-YpoymU.jpg!min)
 
 ## 变量引用
 
-![2333-LaGwDO](https://cdn-static.learntech.cn:88/notes/20211004/2333-LaGwDO.jpg!min)
+![2333-LaGwDO](https://cdn-static.learntech.cn/notes/20211004/2333-LaGwDO.jpg!min)
 
 ## 程序控制、条件循环
 
@@ -293,7 +293,7 @@ public static void main(String[] args) throws Exception {
 
 > ✓ 表示可以访问，x 表示不能访问
 
-![1020-r3og1X](https://cdn-static.learntech.cn:88/notes/20211004/1020-r3og1X.jpg!min)
+![1020-r3og1X](https://cdn-static.learntech.cn/notes/20211004/1020-r3og1X.jpg!min)
 
 1、private（私有化）
 
@@ -325,4 +325,4 @@ const 保留字，是一个类型修饰符，使用 const 声明的对象不能�
 
 ## 关键字汇总
 
-![1019-FPYJpg](https://cdn-static.learntech.cn:88/notes/20211004/1019-FPYJpg.jpg!min)
+![1019-FPYJpg](https://cdn-static.learntech.cn/notes/20211004/1019-FPYJpg.jpg!min)

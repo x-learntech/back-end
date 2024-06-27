@@ -1,4 +1,4 @@
-import { themes } from 'prism-react-renderer';
+import { themes } from "prism-react-renderer";
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -8,7 +8,7 @@ const config = {
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
-  url: "https://back.learntech.cn:88",
+  url: "https://back.learntech.cn",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: "/",
@@ -133,8 +133,8 @@ const config = {
     //   },
     // ],
     [
-     require("./src/plugins/plugin-baidu-analytics"),
-     { trackingID: "0cc567871b4776b1c841ab6c0679989f" }, //  传入trackingID参数
+      require("./src/plugins/plugin-baidu-analytics"),
+      { trackingID: "0cc567871b4776b1c841ab6c0679989f" }, //  传入trackingID参数
     ],
   ],
   themeConfig:
@@ -200,7 +200,7 @@ const config = {
             position: "right",
           },
           {
-            href: "https://front.learntech.cn:88",
+            href: "https://front.learntech.cn",
             label: "大前端",
             position: "right",
           },
@@ -249,7 +249,7 @@ const config = {
         //     ],
         //   },
         // ],
-        copyright: `Copyright © ${new Date().getFullYear()} <a href="https://back.learntech.cn:88/">back.learntech.cn</a> <br> <a href="http://beian.miit.gov.cn/" title="闽ICP备15011150号-1" target="_blank">闽ICP备15011150号-1</a> . Built with Docusaurus `,
+        copyright: `Copyright © ${new Date().getFullYear()} <a href="https://back.learntech.cn/">back.learntech.cn</a> <br> <a href="http://beian.miit.gov.cn/" title="闽ICP备15011150号-1" target="_blank">闽ICP备15011150号-1</a> . Built with Docusaurus `,
       },
       // https://github.com/FormidableLabs/prism-react-renderer/blob/master/packages/generate-prism-languages/index.ts
       prism: {
