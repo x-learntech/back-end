@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 
 ROOT_DIR=$(dirname $0)
-USER=root
-# tailscale 组网内网IP
-DEST_HOST=100.114.135.91
+USER=ruxin
+DEST_HOST=back.learntech.cn
 DEST_DIR=/data/www/learntech-back/build
 
 if ! yarn run build; then
