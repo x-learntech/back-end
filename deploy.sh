@@ -2,7 +2,8 @@
 
 ROOT_DIR=$(dirname $0)
 USER=root
-DEST_HOST=front.learntech.cn
+# tailscale 组网内网IP
+DEST_HOST=100.114.135.91
 DEST_DIR=/data/www/learntech-back/build
 
 if ! yarn run build; then

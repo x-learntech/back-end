@@ -69,7 +69,7 @@ firewall-cmd --permanent --zone=public --add-service=https
 - ClientAliveInterval 指定了服务器端向客户端请求消息的时间间隔，默认是 0，不发送。而 ClientAliveInterval 60 表示每分钟发送一次，然后客户端响应，这样就保持长连接了。
 - ClientAliveCountMax，使用默认值 3 即可。ClientAliveCountMax 表示服务器发出请求后客户端没有响应的次数达到一定值，就自动断开。
 
-保存后退出，然后 reload ssh 服务，使配置生效： `service sshd reload`
+保存后退出，然后重启 ssh 服务，使配置生效： `service sshd reload`
 
 ## 通过 ssh 免密登录
 
