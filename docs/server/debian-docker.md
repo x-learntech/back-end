@@ -12,7 +12,7 @@ LABEL name="my-nginx-php-node" version="1.0.0"
 
 # 安装依赖及环境
 RUN sed -i 's/http:\/\/deb.debian.org/https:\/\/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list.d/debian.sources &&\
-    apt-get update && apt-get install -y git curl wget cron vim openssh-server rsync locales vsftpd &&\
+    apt-get update && apt-get install -y git curl wget cron vim openssh-server rsync zip unzip locales &&\
     apt-get install -y php8.2 php8.2-common php8.2-cli php8.2-fpm php8.2-mysql php8.2-opcache php8.2-zip php8.2-gd php8.2-mbstring php8.2-curl php8.2-xml php8.2-intl php8.2-imagick &&\
     git clone --depth 1 https://gitee.com/neilpang/acme.sh.git &&\
     cd acme.sh &&\
@@ -26,6 +26,9 @@ VOLUME ["/data", "/etc/nginx", "/var/log/nginx", "/app/config"]
 
 EXPOSE 22 80 443 8080
 
+# 复制 start.sh 脚本
+COPY start.sh /app/config/start.sh
+
 # 复制 entrypoint.sh 脚本
 COPY entrypoint.sh /entrypoint.sh
 
@@ -38,7 +41,30 @@ CMD ["nginx", "-g", "daemon off;"]
 
 ## 使用 Docker 容器
 
-其中上面有涉及的文件都是位于 Dockerfile 同层级的目录下，比如 entrypoint.sh，run-test.sh。
+其中上面有涉及的文件都是位于 Dockerfile 同层级的目录下，比如 start.sh，entrypoint.sh。
+
+start.sh 如下：
+
+```bash
+#!/bin/bash
+
+# 执行一些预处理操作
+echo "当前系统环境..."
+nginx -version
+node --version
+pm2 --version
+php --version
+
+echo "Starting up..."
+# 在 npm start 后添加一个 & 符号来使进程在后台运行，通过 nohup 命令来确保进程在终端关闭后仍能继续运行。
+echo "Starting koa2..."
+cd /data/koa2 && nohup npm start &
+
+echo "Starting new.js..."
+cd /data/koa2 && nohup pm2 start new.js &
+
+echo "Starting End..."
+```
 
 entrypoint.sh 如下：
 
@@ -54,13 +80,22 @@ service php8.2-fpm start
 
 # 启动 Node 服务
 npm install -g pm2
-pm2 start /app/config/ecosystem.config.js
+# pm2 start /app/config/ecosystem.config.js
+
+# 确认 start.sh 文件存在且可执行
+if [ -x "/app/config/start.sh" ]; then
+    # 执行 start.sh
+    /app/config/start.sh
+else
+    echo "/app/config/start.sh is missing or not executable"
+    exit 1
+fi
 
 # 运行 Nginx 进程
 nginx -g "daemon off;"
 ```
 
-run-test.sh 如下：
+run-test.sh，主要是打包前测试验证用的。如下：
 
 ```bash
 #!/bin/bash
@@ -74,7 +109,7 @@ docker run --name my-nginx-php-node -d -p 1022:22 \
 my-nginx-php-node
 ```
 
-其中 ecosystem.config.js 内容示例如下：
+其中 pm2 的 ecosystem.config.js 内容示例如下：
 
 ```bash
 const path = require("path");
@@ -115,6 +150,8 @@ module.exports = {
   ],
 };
 ```
+
+**推荐用 start.sh 方式运行 node 项目，更自由自主**
 
 ### 构建 Docker images 镜像
 

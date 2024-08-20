@@ -10,4 +10,4 @@ if ! yarn run build; then
 fi
 echo "success!!!"
 
-rsync -azv --exclude '.*' --delete "${ROOT_DIR}/build/" -e "ssh -p 10222" "${USER}@${DEST_HOST}:${DEST_DIR}"
+rsync --info=progress2 -az --exclude '.*' --delete "${ROOT_DIR}/build/" -e "ssh -p 10222" "${USER}@${DEST_HOST}:${DEST_DIR}"
