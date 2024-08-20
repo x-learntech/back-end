@@ -8,7 +8,22 @@
 
 具体配置请查看这边：[https://gofrp.org/zh-cn/docs/examples/](https://gofrp.org/zh-cn/docs/examples/)
 
-## 创建 Plist
+## brew 安装
+
+mac 上推荐使用 brew 来安装。
+
+```bash
+# mac 上我其实只用到了 frpc
+brew install frpc # 配置文件 frpc -c /opt/homebrew/etc/frp/frpc.toml
+brew install frps # 配置文件 frps -c /opt/homebrew/etc/frp/frps.toml
+
+# 启动
+brew services start frpc
+```
+
+## 官网安装
+
+创建 Plist
 
 在 macOS 系统中，Plist（Property List）是一种数据存储格式，用于存储配置信息。它是一种轻量级的 XML 格式，可以存储字符串、数字、日期、数据（二进制数据）和数组或字典等数据类型。Plist 文件通常用于存储应用程序的设置和偏好配置，以及系统配置。
 
