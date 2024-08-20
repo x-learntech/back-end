@@ -121,7 +121,6 @@ const config = {
     ],
     "docusaurus-plugin-sass",
     "@docusaurus/theme-live-codeblock",
-    "@docusaurus/remark-plugin-npm2yarn",
     // [
     //   '@docusaurus/plugin-ideal-image',
     //   {
