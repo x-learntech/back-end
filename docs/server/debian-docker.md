@@ -170,3 +170,23 @@ docker save -o my-nginx-php-node.tar my-nginx-php-node:latest
 ```bash
 ./run-test.sh
 ```
+
+## 补充
+
+### `提示 -bash: warning: setlocale: LC_ALL: cannot change locale (en_US.UTF-8)`
+
+```bash
+# 1、如果列表中没有en_US.UTF-8，你需要安装它。
+locale -a
+
+# 2、编辑/etc/locale.gen文件，取消en_US.UTF-8 UTF-8这一行的注释（如果被注释了的话）
+
+# 3、生成Locale
+sudo locale-gen
+
+# 4、编辑/etc/default/locale文件
+sudo vi /etc/default/locale
+# 包含以下内容：
+LANG=en_US.UTF-8
+LC_ALL=en_US.UTF-8
+```
