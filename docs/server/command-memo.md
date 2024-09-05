@@ -2,7 +2,7 @@
 sidebar_position: 5
 ---
 
-# 命令行备忘
+# Linux 命令行备忘
 
 > 默认为 Linux 环境
 
@@ -151,9 +151,22 @@ chmod -R 777 /home/user
 
 ## 更改文件或者目录权限
 
+基本语法：
+
 ```bash
-# 修改目录及其子目录的拥有者为当前用户
+chown 新的所有者:新的所属组 文件或目录
+```
+
+修改目录及其子目录的拥有者为当前用户：
+
+```bash
 sudo chown -R $(whoami) dir
+```
+
+假设你有一个名为 myfolder 的文件夹，你想将其所有者更改为用户 john，所属组更改为 admin，你可以使用以下命令：
+
+```bash
+sudo chown -R john:admin myfolder
 ```
 
 - `chown` change owner 的缩写。
