@@ -25,7 +25,6 @@ By default, MongoDB runs using the mongod user account and uses the following de
 
 > /var/lib/mongo (the data directory)
 > /var/log/mongodb (the log directory)
->
 
 ```bash
 # 开机启动
@@ -40,23 +39,31 @@ sudo rm -r /var/log/mongodb
 sudo rm -r /var/lib/mongo
 ```
 
-MongoDB默认将数据文件存储在 `/var/lib/mongo` 目录，默认日志文件在 `/var/log/mongodb` 中。如果要修改，可以在 `/etc/mongod.conf` 配置中指定备用日志和数据文件目录。
+MongoDB 默认将数据文件存储在 `/var/lib/mongo` 目录，默认日志文件在 `/var/log/mongodb` 中。如果要修改，可以在 `/etc/mongod.conf` 配置中指定备用日志和数据文件目录。
 
-PS：Mac版本安装
+PS：Mac 版本安装
 
 ```bash
 brew tap mongodb/brew
 brew install mongodb-community
 ```
 
-Mac版本的配置文件默认在 `/usr/local/etc/mongod.conf`
+Mac 版本的配置信息：
+
+|                                                                                                                               | Intel 处理器                 | Apple Silicon 处理器            |
+| :---------------------------------------------------------------------------------------------------------------------------- | :--------------------------- | ------------------------------- |
+| [配置文件](https://www.mongodb.com/zh-cn/docs/manual/reference/configuration-options/)                                        | `/usr/local/etc/mongod.conf` | `/opt/homebrew/etc/mongod.conf` |
+| [`log directory`](https://www.mongodb.com/zh-cn/docs/manual/reference/configuration-options/#mongodb-setting-systemLog.path)  | `/usr/local/var/log/mongodb` | `/opt/homebrew/var/log/mongodb` |
+| [`data directory`](https://www.mongodb.com/zh-cn/docs/manual/reference/configuration-options/#mongodb-setting-storage.dbPath) | `/usr/local/var/mongodb`     | `/opt/homebrew/var/mongodb`     |
+
+更多查看：[https://www.mongodb.com/zh-cn/docs/manual/tutorial/install-mongodb-on-os-x/](https://www.mongodb.com/zh-cn/docs/manual/tutorial/install-mongodb-on-os-x/)
 
 ## 安全设置
 
-保护MongoDB的3个简单的方法：
+保护 MongoDB 的 3 个简单的方法：
 
-- 绑定局域网IP，杜绝互联网访问
-- 配置防火墙，保护27017端口
+- 绑定局域网 IP，杜绝互联网访问
+- 配置防火墙，保护 27017 端口
 - 配置账号密码，对数据库进行访问控制
 
 ### 用户及权限
@@ -88,24 +95,24 @@ db.dropDatabase()
 $ exit
 ```
 
-- user文档字段介绍：
+- user 文档字段介绍：
 
-> user字段，为新用户的名字；
-> pwd字段，用户的密码；
-> roles字段，指定用户的角色，可以用一个空数组给新用户设定空角色。在roles字段,可以指定内置角色和用户定义的角色。
+> user 字段，为新用户的名字；
+> pwd 字段，用户的密码；
+> roles 字段，指定用户的角色，可以用一个空数组给新用户设定空角色。在 roles 字段,可以指定内置角色和用户定义的角色。
 
-- MongoDB内置角色有如下：
+- MongoDB 内置角色有如下：
 
 > Read：允许用户读取指定数据库
 > readWrite：允许用户读写指定数据库
-> dbAdmin：允许用户在指定数据库中执行管理函数，如索引创建、删除，查看统计或访问system.profile
-> userAdmin：允许用户向system.users集合写入，可以找指定数据库里创建、删除和管理用户
-> clusterAdmin：只在admin数据库中可用，赋予用户所有分片和复制集相关函数的管理权限。
-> readAnyDatabase：只在admin数据库中可用，赋予用户所有数据库的读权限
-> readWriteAnyDatabase：只在admin数据库中可用，赋予用户所有数据库的读写权限
-> userAdminAnyDatabase：只在admin数据库中可用，赋予用户所有数据库的userAdmin权限
-> dbAdminAnyDatabase：只在admin数据库中可用，赋予用户所有数据库的dbAdmin权限。
-> root：只在admin数据库中可用。超级账号，超级权限
+> dbAdmin：允许用户在指定数据库中执行管理函数，如索引创建、删除，查看统计或访问 system.profile
+> userAdmin：允许用户向 system.users 集合写入，可以找指定数据库里创建、删除和管理用户
+> clusterAdmin：只在 admin 数据库中可用，赋予用户所有分片和复制集相关函数的管理权限。
+> readAnyDatabase：只在 admin 数据库中可用，赋予用户所有数据库的读权限
+> readWriteAnyDatabase：只在 admin 数据库中可用，赋予用户所有数据库的读写权限
+> userAdminAnyDatabase：只在 admin 数据库中可用，赋予用户所有数据库的 userAdmin 权限
+> dbAdminAnyDatabase：只在 admin 数据库中可用，赋予用户所有数据库的 dbAdmin 权限。
+> root：只在 admin 数据库中可用。超级账号，超级权限
 
 ```bash
 # 编辑配置文件
@@ -133,9 +140,9 @@ mongodb://[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][
 部分示例：
 
 - 连接本地数据库服务器，端口是默认的：`mongodb://localhost`
-- 使用用户名fred，密码foobar登录localhost的admin数据库：`mongodb://fred:foobar@localhost`
-- 使用用户名fred，密码foobar登录localhost的baz数据库：`mongodb://fred:foobar@localhost/baz`
-- 使用用户名fred，密码foobar，端口27011，携带参数 authSource=admin 登录localhost的baz数据库：`mongodb://fred:foobar@localhost:27011/baz?authSource=admin`
+- 使用用户名 fred，密码 foobar 登录 localhost 的 admin 数据库：`mongodb://fred:foobar@localhost`
+- 使用用户名 fred，密码 foobar 登录 localhost 的 baz 数据库：`mongodb://fred:foobar@localhost/baz`
+- 使用用户名 fred，密码 foobar，端口 27011，携带参数 authSource=admin 登录 localhost 的 baz 数据库：`mongodb://fred:foobar@localhost:27011/baz?authSource=admin`
 
 ## 其他
 
