@@ -1,22 +1,36 @@
-# Mysql 配置
+# MySQL 配置
 
 官网地址：[https://www.mysql.com/](https://www.mysql.com/)
+
+本环境基于 Mac 系统，brew 安装。
+
+Mysql 9 以后不再支持 `mysql_native_password` 密码权限插件，需要改成 `caching_sha2_password`。
 
 ## 基本用法
 
 ```bash
 # 查看版本
-$ mysql --version
+mysql --version
 # 登录数据库
-$ mysql -uroot -p # 用户名root，接下去输入密码
+mysql -uroot -p # 用户名root，接下去输入密码
+# 使用 --skip-grant-tables 免密码登录 MySQL（如果您无法正常登录）：
+mysql -u root --skip-grant-tables
 # 列出 MySQL 数据库管理系统的数据库列表。
-$ SHOW DATABASES;
+SHOW DATABASES;
 # 显示指定数据库的所有表，使用该命令前需要使用 use 命令来选择要操作的数据库。
-$ SHOW TABLES;
+SHOW TABLES;
 # 查看当前用户
-$ select user();
+select user();
 # 查看用户 test 的连接方式
-$ mysql> select user, plugin from mysql.user where user="test";
+mysql> select user, plugin from mysql.user where user="test";
+# 查看 MySQL 中用户使用的认证插件
+SELECT User, Host, plugin FROM mysql.user;
+# 刷新权限
+FLUSH PRIVILEGES;
+# 备份数据
+mysqldump -u root -p --all-databases > all_databases_backup.sql;
+# 恢复数据
+mysql -u root -p < all_databases_backup.sql
 ```
 
 ### 一. 创建用户
@@ -33,7 +47,13 @@ $ mysql> select user, plugin from mysql.user where user="test";
 
 **例子：**
 
-`CREATE USER 'dog'@'localhost' IDENTIFIED BY '123456'; CREATE USER 'pig'@'192.168.1.101_' IDENDIFIED BY '123456'; CREATE USER 'pig'@'%' IDENTIFIED BY '123456'; CREATE USER 'pig'@'%' IDENTIFIED BY ''; CREATE USER 'pig'@'%';`
+```sql
+CREATE USER 'dog'@'localhost' IDENTIFIED BY '123456';
+CREATE USER 'pig'@'192.168.1.101' IDENTIFIED BY '123456';
+CREATE USER 'pig'@'%' IDENTIFIED BY '123456';
+CREATE USER 'pig'@'%' IDENTIFIED BY '';
+CREATE USER 'pig'@'%';
+```
 
 ### 二. 授权
 
@@ -49,43 +69,66 @@ $ mysql> select user, plugin from mysql.user where user="test";
 
 **例子:**
 
-`GRANT SELECT, INSERT ON test.user TO 'pig'@'%'; GRANT ALL ON *.* TO 'pig'@'%';`
+```sql
+GRANT SELECT, INSERT ON test.user TO 'pig'@'%'; GRANT ALL ON *.* TO 'pig'@'%';
+```
 
 **注意:**
 
 用以上命令授权的用户不能给其它用户授权，如果想让该用户可以授权，用以下命令:
 
-`GRANT privileges ON databasename.tablename TO 'username'@'host' WITH GRANT OPTION;`
+```sql
+GRANT privileges ON databasename.tablename TO 'username'@'host' WITH GRANT OPTION;
+```
 
 ### 三.设置与更改用户密码
 
 **命令:**
 
-`SET PASSWORD FOR 'username'@'host' = PASSWORD('newpassword');`
+```sql
+SET PASSWORD FOR 'username'@'host' = PASSWORD('newpassword');
+```
 
 如果是当前登陆用户用:
 
-`SET PASSWORD = PASSWORD("newpassword");`
+```sql
+SET PASSWORD = PASSWORD("newpassword");
+```
 
 **例子:**
 
-`SET PASSWORD FOR 'pig'@'%' = PASSWORD("123456");`
+```sql
+SET PASSWORD FOR 'pig'@'%' = PASSWORD("123456");
+```
 
 ### 四. 撤销用户权限
 
 **命令:**
 
-`REVOKE privilege ON databasename.tablename FROM 'username'@'host';`
+```sql
+REVOKE privilege ON databasename.tablename FROM 'username'@'host';
+```
 
 **例子:**
 
-`REVOKE SELECT ON *.* FROM 'pig'@'%';`
+```sql
+REVOKE SELECT ON *.* FROM 'pig'@'%';
+```
 
 **注意:**
 
-假如你在给用户'pig'@'%'授权的时候是这样的（或类似的）：GRANT SELECT ON test.user TO 'pig'@'%'，则在使用 REVOKE SELECT ON _._ FROM 'pig'@'%';命令并不能撤销该用户对 test 数据库中 user 表的 SELECT 操作。相反，如果授权使用的是 GRANT SELECT ON _._ TO 'pig'@'%';则 REVOKE SELECT ON test.user FROM 'pig'@'%';命令也不能撤销该用户对 test 数据库中 user 表的 Select 权限。
+假如你在给用户`'pig'@'%'`授权的时候是这样的（或类似的）：`GRANT SELECT ON test.user TO 'pig'@'%'`，则在使用 `REVOKE SELECT ON _._ FROM 'pig'@'%';`命令并不能撤销该用户对 test 数据库中 user 表的 SELECT 操作。相反，如果授权使用的是 `GRANT SELECT ON _._ TO 'pig'@'%';`则 `REVOKE SELECT ON test.user FROM 'pig'@'%';`命令也不能撤销该用户对 test 数据库中 user 表的 Select 权限。
 
-具体信息可以用命令 SHOW GRANTS FOR 'pig'@'%'; 查看。
+具体信息可以用命令 `SHOW GRANTS FOR 'pig'@'%';` 查看。
+
+MySQL 9 以后设置密码：
+
+在 MySQL 提示符下，您可以运行以下命令来修改用户的密码和认证插件。例如，假设您要为用户 root 更新密码并使用 caching_sha2_password 插件：
+sql
+
+```sql
+ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'new_password';
+```
 
 ### 五.删除用户
 
@@ -96,10 +139,10 @@ $ mysql> select user, plugin from mysql.user where user="test";
 远程访问：
 
 ```sql
-mysql**>** use mysql;
-mysql**>** update user set host = '%' where user = 'root';
-mysql**>** select host, user from user;
-mysql**>** flush privileges;
+mysql> use mysql;
+mysql> update user set host = '%' where user = 'root';
+mysql> select host, user from user;
+mysql> flush privileges;
 ```
 
 ## 更改验证权限复杂度
@@ -113,7 +156,7 @@ ERROR 1819 (HY000): Your password does not satisfy the current policy requiremen
 
 一般步骤：
 
-1）该问题其实与 mysql 的 validate_password_policy 的值有关。查看一下 msyql 密码相关的几个全局参数：
+1）该问题其实与 mysql 的 **validate_password_policy** 的值有关。查看一下 mysql 密码相关的几个全局参数：
 
 ```sql
 mysql> SHOW VARIABLES LIKE 'validate_password%';
@@ -159,4 +202,18 @@ mysql> set global validate_password.number_count=0;
 ```sql
 mysql> **SET** **PASSWORD** **FOR** 'root'@'localhost' = **PASSWORD**('123');
 Query OK, 0 **rows** affected, 1 warning (0.00 sec)
+```
+
+## 检查 MySQL 错误日志
+
+错误日志通常位于 `/var/log/mysql/error.log` 或 `/opt/homebrew/var/mysql/your_hostname.err`。使用以下命令查看日志：
+
+```bash
+tail -n 50 /opt/homebrew/var/mysql/your_hostname.err
+```
+
+## 删除数据目录（请确保您已经备份）
+
+```bash
+sudo rm -rf /opt/homebrew/var/mysql/*
 ```
