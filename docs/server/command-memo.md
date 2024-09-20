@@ -403,15 +403,15 @@ pkill 和 killall 应用方法差不多。
 
 ## 创建文件
 
-1.  `touch 「文件名」`
+1. `touch 「文件名」`
 
     > 若文件已存在，则更新文件时间为当前系统时间。
 
-2.  `vi 「文件名」`
+2. `vi 「文件名」`
 
     > 编辑文件。若文件不存在，则先创建后编辑。
 
-3.  `echo "「内容」" > 「文件名」`
+3. `echo "「内容」" > 「文件名」`
 
         >若文件已存在，则替换文件内容。
         >
@@ -469,11 +469,7 @@ tar -xvf nufun.tar.gz
 
 ## macOS 命令
 
-## brew 更新
-
-```shell
-brew update && brew upgrade && brew cask upgrade
-```
+## [brew](https://front.learntech.cn/guide/brew)
 
 ## 打开文件（夹）
 
